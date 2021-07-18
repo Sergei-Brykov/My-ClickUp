@@ -1,0 +1,51 @@
+.container {
+    width: 100%;
+    background: red;
+}
+
+.columnWrap {
+    width: 250px;
+    height: 300px;
+    padding: 10px;
+}
+
+.column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    width: 100%;
+    border-top: 4px solid grey;
+}
+
+.form {
+    border: 2px solid grey;
+    border-top: 4px solid grey;
+    flex-direction: column;
+}
+
+.inputWrap {
+    width: 100%;
+}
+
+.colorWrap {
+    margin: 8px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.circle {
+    width: 22px;
+    height: 22px;
+    margin: 4px 2px;
+    border-radius: 50%;
+}
+
+.btnWrap {
+    width: 100%;
+    display: flex;
+    padding: 8px;
+    justify-content: flex-end;
+
+}

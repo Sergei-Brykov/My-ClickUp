@@ -6,4 +6,11 @@ export class LocalStorageService {
       return v.toString(16);
     });
   }
+
+  _saveBoard(board, updateAt) {
+    board.updateAt = updateAt;
+    board.columns = board.columns || [];
+
+    localStorage.setItem(`board-${board.id}`, JSON.stringify(board));
+  }
 }

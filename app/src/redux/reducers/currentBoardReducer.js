@@ -14,7 +14,7 @@ export const currentBoardReducer = (state = initialState, action) => {
       return { ...state, loading: true };
 
     case GET_BOARD_RESPONSE:
-      return { error: "", loading: false, boards: action.data };
+      return { error: "", loading: false, board: action.data };
 
     case GET_BOARD_REJECT:
       return { ...state, error: action.data };

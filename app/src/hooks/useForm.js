@@ -12,11 +12,15 @@ function useForm({
   const [errors, setErrors] = useState({});
   const [disabledForm, setIsDisabledForm] = useState(true);
 
+  const customChange = useCallback((name, value) => {
+    clearError();
+    setErrors({});
+    setValues((prev) => ({ ...prev, [name]: value }));
+  }, []);
+
   const onChange = useCallback(
     (name) => (e) => {
-      clearError();
-      setErrors({});
-      setValues((prev) => ({ ...prev, [name]: e.target.value }));
+      customChange(name, e.target.value);
     },
     []
   );
@@ -52,6 +56,7 @@ function useForm({
     values,
     errors,
     onChange,
+    customChange,
     forceClear,
     // CUSTOM SUBMIT, IF YOU NEED ADD VALUES FIST ARG IS SUBMIT VALUE.
     onSubmit,

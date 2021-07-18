@@ -9,7 +9,7 @@ import deleteIcon from "@iconify-icons/mdi-light/delete";
 import { useCallback, useState } from "react";
 import { BoardForm } from "../BoardForm";
 import { useDispatch } from "react-redux";
-import { deleteBoard } from "../../../redux/asyncActions/deleteBoard";
+import { deleteBoard } from "../../../redux/asyncActions/board/deleteBoard";
 
 export function BoardItem(board) {
   const { isFormOpen, stopEvent, openForm, closeForm, onDelete } = useBoardItem(

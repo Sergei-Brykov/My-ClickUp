@@ -1,14 +1,24 @@
-import { useParams } from "react-router-dom";
+import styles from "./styles.module.css";
+import { useBoard } from "../../hooks/useBoard";
+import { Column } from "./Column";
+import { FormWrap } from "../../copmponents/FormWrap";
+import { AddColumnForm } from "./AddColumnForm";
+import { Wrap } from "./AddColumnForm/Wrap";
 
 export function BoardPage() {
-  const board = useBoard();
+  const [board, { loading, error }] = useBoard();
 
-  return <div>board page</div>;
-}
+  if (error) return <>{error}</>;
+  if (loading) return <>loading</>;
+  if (!board) return <>Sorry ou link invalid</>;
 
-function useBoard() {
-  const { id } = useParams();
-  console.log(id);
+  return (
+    <div className={styles.container}>
+      {board.columns?.map((column) => (
+        <Column key={column.id} {...column} />
+      ))}
 
-  return {};
+      <FormWrap text="NEW COLUMN" Form={AddColumnForm} Wrap={Wrap} />
+    </div>
+  );
 }

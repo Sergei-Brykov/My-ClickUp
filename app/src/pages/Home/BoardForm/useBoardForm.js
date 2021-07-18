@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
 import useForm from "../../../hooks/useForm";
-import { createNewBoard } from "../../../redux/asyncActions/createNewBoard";
+import { createNewBoard } from "../../../redux/asyncActions/board/createNewBoard";
 import { useMemo } from "react";
-import { updateBoard } from "../../../redux/asyncActions/updateBoard";
+import { updateBoard } from "../../../redux/asyncActions/board/updateBoard";
 
 export function useBoardForm(onClose, board) {
   const dispatch = useDispatch();

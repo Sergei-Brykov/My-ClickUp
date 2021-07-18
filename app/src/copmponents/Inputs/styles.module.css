@@ -1,0 +1,10 @@
+.input {
+    flex-grow: 1;
+    width: 100%;
+    background: #2b343b;
+    outline: none;
+    border: none;
+    padding: 10px 12px;
+    font-size: 24px;
+    color: white
+}

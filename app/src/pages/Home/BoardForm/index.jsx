@@ -3,6 +3,7 @@ import { Button } from "../../../copmponents/Button";
 import cl from "../../../helpers/classname";
 import { ErrorView } from "../../../copmponents/ErrorView";
 import { useBoardForm } from "./useBoardForm";
+import { MainInput } from "../../../copmponents/Inputs/MainInput";
 
 export function BoardForm({ onClose, board }) {
   const [form, error] = useBoardForm(onClose, board);
@@ -13,7 +14,7 @@ export function BoardForm({ onClose, board }) {
         className={cl(styles.addBoardForm, !!error && styles.error)}
         onSubmit={form.onSubmit}
       >
-        <input
+        <MainInput
           autoFocus
           className={styles.input}
           onBlur={onClose}

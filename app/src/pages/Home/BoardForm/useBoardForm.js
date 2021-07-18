@@ -41,7 +41,7 @@ export function useBoardForm(onClose, board) {
     };
 
     return settings;
-  }, [board, onClose, dispatch]);
+  }, [board, onClose]);
 
   const form = useForm(formSettings);
 

@@ -69,17 +69,3 @@
     border-color: #f73f81;
 }
 
-.iconWrap {
-    cursor: pointer;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.iconWrap:hover {
-    background: #4f5661;
-}

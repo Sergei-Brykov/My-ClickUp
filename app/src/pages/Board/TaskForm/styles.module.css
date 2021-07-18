@@ -1,0 +1,14 @@
+.container {
+    background: rgba(43, 52, 59, 0.6);
+    border: 2px solid #7b68ee;
+    width: 100%;
+    height: auto;
+    min-width: 250px;
+    padding: 10px;
+}
+
+.btnWrap{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

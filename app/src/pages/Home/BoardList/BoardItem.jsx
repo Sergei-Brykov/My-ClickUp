@@ -3,13 +3,12 @@ import { path } from "../../../Providers/path";
 import cl from "../../../helpers/classname";
 import styles from "../styles.module.css";
 import { normalizeTime } from "../../../helpers/normalizeTime";
-import { Icon } from "@iconify/react";
-import pencilIcon from "@iconify-icons/mdi-light/pencil";
-import deleteIcon from "@iconify-icons/mdi-light/delete";
 import { useCallback, useState } from "react";
 import { BoardForm } from "../BoardForm";
 import { useDispatch } from "react-redux";
 import { deleteBoard } from "../../../redux/asyncActions/board/deleteBoard";
+import { EditButton } from "../../../copmponents/Buttons/EditButton";
+import { DeleterButton } from "../../../copmponents/Buttons/DeleterButton";
 
 export function BoardItem(board) {
   const { isFormOpen, stopEvent, openForm, closeForm, onDelete } = useBoardItem(
@@ -29,12 +28,8 @@ export function BoardItem(board) {
           {normalizeTime(createdAt)}
         </div>
         <div onClick={stopEvent} className={cl(styles.settings, styles.border)}>
-          <div className={cl(styles.iconWrap, "ml")} onClick={openForm}>
-            <Icon icon={pencilIcon} />
-          </div>
-          <div className={cl(styles.iconWrap, "ml")} onClick={onDelete}>
-            <Icon icon={deleteIcon} />
-          </div>
+          <EditButton onClick={openForm} />
+          <DeleterButton onClick={onDelete} />
         </div>
       </div>
     </Link>

@@ -1,18 +1,54 @@
 .columnWrap {
-    width: 250px;
+    width: 300px;
+    height: auto;
     min-width: 250px;
-    height: 300px;
     padding: 10px;
-
 }
 
 .column {
     width: 100%;
 }
 
+.plus {
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+.titleWrap{
+    display: flex;
+    flex-direction: row;
+}
+
+.spanTitle {
+    text-transform: uppercase
+}
+
+
+.btnWrap {
+    cursor: initial;
+    padding: 8px 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
 .header {
     width: 100%;
-    height: 80px;
+    height: auto;
     border-top: 4px solid transparent;
     background: #2b343b;
+}
+
+.count {
+    border: 1px solid black;
+    margin-left: 9px;
+    border-radius: 10px;
+    padding: 0 7px;
 }

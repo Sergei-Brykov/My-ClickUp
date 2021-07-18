@@ -1,13 +1,13 @@
 import styles from "./styles.module.css";
 import cl from "../../../helpers/classname";
-import { Button } from "../../../copmponents/Button";
+import { Button } from "../../../copmponents/Buttons";
 import { MainInput } from "../../../copmponents/Inputs/MainInput";
 import { ErrorView } from "../../../copmponents/ErrorView";
 import { colors } from "../../../config/colors";
 import { useAddColumnForm } from "./useAddColumnForm";
 
-export function AddColumnForm({ onClose }) {
-  const [form, error] = useAddColumnForm(onClose);
+export function ColumnForm({ onClose, column = null }) {
+  const [form, error] = useAddColumnForm(onClose, column);
 
   return (
     <form onSubmit={form.onSubmit} className={styles.columnWrap}>
@@ -17,9 +17,9 @@ export function AddColumnForm({ onClose }) {
       >
         <div className={styles.inputWrap}>
           <MainInput
+            autoFocus
             onChange={form.onChange("title")}
             value={form.values.title}
-            className=""
             placeholder={"COLUMN NAME"}
           />
           <div className={styles.colorWrap}>

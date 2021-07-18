@@ -5,13 +5,6 @@ export class MainService extends LocalStorageService {
     localStorage.setItem("all-boards", JSON.stringify(boards));
   }
 
-  _saveBoard(board, updateAt) {
-    board.updateAt = updateAt;
-    board.columns = board.columns || [];
-
-    localStorage.setItem(`board-${board.id}`, JSON.stringify(board));
-  }
-
   _deleteBoard(id) {
     localStorage.removeItem(`board-${id}`);
   }
@@ -30,7 +23,7 @@ export class MainService extends LocalStorageService {
     boards.push(board);
 
     this._saveAllBoards(boards);
-    this._saveBoard(board, Date.now());
+    this._saveBoard(board);
 
     return boards;
   }
@@ -55,7 +48,7 @@ export class MainService extends LocalStorageService {
     });
 
     this._saveAllBoards(changedBoards);
-    this._saveBoard(boardData, Date.now());
+    this._saveBoard(boardData);
 
     return changedBoards;
   }

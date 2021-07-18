@@ -7,8 +7,8 @@ export class LocalStorageService {
     });
   }
 
-  _saveBoard(board, updateAt) {
-    board.updateAt = updateAt;
+  _saveBoard(board) {
+    board.updateAt = Date.now();
     board.columns = board.columns || [];
 
     localStorage.setItem(`board-${board.id}`, JSON.stringify(board));

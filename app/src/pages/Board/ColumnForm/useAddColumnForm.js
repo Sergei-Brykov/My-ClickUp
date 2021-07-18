@@ -3,17 +3,21 @@ import useForm from "../../../hooks/useForm";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { createNewColumn } from "../../../redux/asyncActions/columns/createNewColumn";
+import { updateBoard } from "../../../redux/asyncActions/board/updateBoard";
+import { updateColumn } from "../../../redux/asyncActions/columns/updateColumn";
 
-export function useAddColumnForm(onClose) {
+const init = {
+  title: "",
+  color: "#801300",
+};
+
+export function useAddColumnForm(onClose, column) {
   const { id } = useParams();
   const dispatch = useDispatch();
 
   const formSettings = useMemo(() => {
-    return {
-      initial: {
-        title: "",
-        color: "#801300",
-      },
+    let settings = {
+      initial: column || init,
       validate(values) {
         const errors = {};
 
@@ -23,14 +27,24 @@ export function useAddColumnForm(onClose) {
 
         return errors;
       },
-      onSubmit(values) {
+    };
+
+    if (column) {
+      settings.onSubmit = (values) => {
+        dispatch(updateColumn(id, values));
+        onClose();
+      };
+    } else {
+      settings.onSubmit = (values) => {
         values.createdAt = Date.now();
 
         dispatch(createNewColumn(id, values));
         onClose();
-      },
-    };
-  }, [onClose]);
+      };
+    }
+
+    return settings;
+  }, [column, onClose]);
 
   const form = useForm(formSettings);
 

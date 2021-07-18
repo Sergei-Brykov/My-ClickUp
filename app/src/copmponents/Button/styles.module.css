@@ -1,0 +1,23 @@
+.root {
+    background: #7b68ee;
+    height: 32px;
+    padding: 6px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+}
+
+.root:hover {
+    background: #5b43ea;
+}
+
+.root[disabled] {
+    background: #b3acde !important;
+    cursor: initial!important;
+}

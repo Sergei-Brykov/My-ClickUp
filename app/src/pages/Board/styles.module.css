@@ -1,4 +1,6 @@
 .container {
+    width: 100vw;
+    flex-wrap: nowrap;
     display: flex;
     flex-direction: row;
     padding: 10px;

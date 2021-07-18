@@ -6,10 +6,10 @@ import accountIcon from "@iconify-icons/mdi-light/account";
 
 export function Header({ user }) {
   return (
-    <div className={styles.header}>
+    <header className={styles.header}>
       <HomeTitle />
       <UserAvatar user={user} />
-    </div>
+    </header>
   );
 }
 

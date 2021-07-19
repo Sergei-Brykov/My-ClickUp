@@ -1,10 +1,10 @@
 export function buildNewBoard(board, { dragged, dropped }) {
-  const currentTask = getCurrentTask(board, dragged);
+  const currentTask = getCurrentTask(board, dragged, true);
   (currentTask || {}).isDrag = true;
   return addCurrentTask(board, currentTask, dropped);
 }
 
-export function getCurrentTask(board, dragged) {
+export function getCurrentTask(board, dragged, isLocal = false) {
   const { columnIndex, taskIndex } = dragged;
   const copy = board.columns[columnIndex].tasks.slice();
 

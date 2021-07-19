@@ -8,14 +8,10 @@ import { DragAndDropContext } from "../../../Providers/DragAndDropProvider";
 
 export function Column(props) {
   const { crudService, formService } = useColumnCrud(props);
-  const { columnDragOver } = useContext(DragAndDropContext);
+  const { onDragEnd } = useContext(DragAndDropContext);
 
   return (
-    <section
-      onDragOver={(e) => columnDragOver(e, props.columnIndex)}
-      data-column-id={props.column.id}
-      className={styles.section}
-    >
+    <section dro data-column-id={props.column.id} className={styles.section}>
       <ColumnHeaderWrap crudService={crudService} {...formService} {...props} />
       <ColumnBodyWrap {...props} />
       <ColumnFooterWrap {...props} />

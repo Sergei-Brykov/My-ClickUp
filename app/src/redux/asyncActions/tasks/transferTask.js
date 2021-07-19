@@ -1,10 +1,10 @@
-import { serverApi } from "../index";
+import { serverApi } from "../../../server-api";
 import {
   getOneBoardReject,
   getOneBoardResponse,
-} from "../../redux/reducers/currentBoardReducer";
+} from "../../reducers/currentBoardReducer";
 
-export function createNewTask(boardId, transfer) {
+export function transferTask(boardId, transfer) {
   return async (dispatch) => {
     try {
       const board = await serverApi.boardService.transferTask(

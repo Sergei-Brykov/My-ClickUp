@@ -119,3 +119,13 @@ code {
     padding-left: 8px;
 }
 
+.dndarea {
+    width: 100%;
+    height: 50px;
+    background: grey;
+    display: none;
+}
+
+.dnd .dndarea {
+    display: block;
+}

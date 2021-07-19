@@ -79,6 +79,7 @@ export class BoardService extends LocalStorageService {
   }
 
   async transferTask(boardId, { dragged, dropped }) {
+    console.log("dragged, dropped", dragged, dropped);
     const board = this._getCurrentBoard(boardId);
     const currentTask = getCurrentTask(board, dragged);
 

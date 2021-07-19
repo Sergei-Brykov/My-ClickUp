@@ -1,7 +1,24 @@
+import { useContext, useRef } from "react";
+
 import styles from "../styles.module.css";
 import { ChevronButton } from "../../../../copmponents/Buttons/ChevronButtons";
 import { EditButton } from "../../../../copmponents/Buttons/EditButton";
 import { DeleterButton } from "../../../../copmponents/Buttons/DeleterButton";
+import { DragAndDropContext } from "../../../../Providers/DragAndDropProvider";
+import cl from "../../../../helpers/classname";
+
+function useDndHeader(columnIndex) {
+  const { isDragAndDrop, onDragOverColumn, onDragLeave } =
+    useContext(DragAndDropContext);
+  const ref = useRef();
+
+  return {
+    ref,
+    dragClasses: cl(styles.columnWrap, isDragAndDrop && "pointer-events"),
+    onDragLeave: (e) => onDragLeave(e, ref.current),
+    onDragOver: (e) => onDragOverColumn(e, columnIndex, "top", ref.current),
+  };
+}
 
 export function ColumnHeader({
   title,
@@ -13,8 +30,14 @@ export function ColumnHeader({
   columnIndex,
   isLast,
 }) {
+  const { ref, onDragLeave, onDragOver } = useDndHeader(columnIndex);
+
   return (
-    <div className={styles.columnWrap}>
+    <div
+      onDragLeave={onDragLeave}
+      onDragOver={onDragOver}
+      className={styles.columnWrap}
+    >
       <div className={styles.column}>
         <div
           className={styles.header}
@@ -52,6 +75,7 @@ export function ColumnHeader({
           </div>
         </div>
       </div>
+      <div ref={ref} className="dropListener" />
     </div>
   );
 }

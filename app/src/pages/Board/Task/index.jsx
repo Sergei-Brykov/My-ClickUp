@@ -1,8 +1,7 @@
 import styles from "./styles.module.css";
 import { useState } from "react";
 import { TaskForm } from "../TaskForm/TaskForm";
-import { TaskBody } from "./TaskBody";
-import { DragAndDropTaskWrapper } from "./DragAndDropTaskWrapper";
+import { TaskView } from "./TaskView";
 
 export function Task({ task, column, taskIndex, columnIndex }) {
   const [formOpen, setFormOpen] = useState(false);
@@ -16,13 +15,11 @@ export function Task({ task, column, taskIndex, columnIndex }) {
   }
 
   return (
-    <DragAndDropTaskWrapper
+    <TaskView
       task={task}
-      column={column}
       taskIndex={taskIndex}
       columnIndex={columnIndex}
-    >
-      <TaskBody {...task} openForm={() => setFormOpen(true)} />
-    </DragAndDropTaskWrapper>
+      openForm={() => setFormOpen(true)}
+    />
   );
 }

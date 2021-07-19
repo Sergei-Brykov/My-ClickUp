@@ -1,4 +1,4 @@
-export function throttle(func, ms = 400) {
+export function throttle(func, ms = 100) {
   let isThrottled = false;
   let savedArgs;
   let savedThis;

@@ -1,16 +1,10 @@
 import { serverApi } from "../../../server-api";
-import {
-  getOneBoardReject,
-  getOneBoardResponse,
-} from "../../reducers/currentBoardReducer";
+import { getOneBoardWrapper } from "../_decorator";
 
 export function updateColumn(boardId, column) {
   return async (dispatch) => {
-    try {
-      const board = await serverApi.boardService.updateColumn(boardId, column);
-      dispatch(getOneBoardResponse(board));
-    } catch (e) {
-      dispatch(getOneBoardReject(e));
-    }
+    await getOneBoardWrapper(dispatch, () => {
+      return serverApi.boardService.updateColumn(boardId, column);
+    });
   };
 }

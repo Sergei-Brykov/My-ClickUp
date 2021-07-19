@@ -1,20 +1,10 @@
 import { serverApi } from "../../../server-api";
-import {
-  getOneBoardReject,
-  getOneBoardResponse,
-} from "../../reducers/currentBoardReducer";
+import { getOneBoardWrapper } from "../_decorator";
 
 export function createNewTask(boardId, columnId, task) {
   return async (dispatch) => {
-    try {
-      const board = await serverApi.boardService.createNewTask(
-        boardId,
-        columnId,
-        task
-      );
-      dispatch(getOneBoardResponse(board));
-    } catch (e) {
-      dispatch(getOneBoardReject(e));
-    }
+    await getOneBoardWrapper(dispatch, () => {
+      return serverApi.boardService.createNewTask(boardId, columnId, task);
+    });
   };
 }

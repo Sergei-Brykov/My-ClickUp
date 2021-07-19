@@ -1,18 +1,10 @@
 import { serverApi } from "../../../server-api";
-import {
-  getAllBoardReject,
-  getAllBoardResponse,
-} from "../../reducers/boardsReducer";
-import { MainService } from "../../../server-api/localStorageServices/main";
+import { allBoardsWrapper } from "./_decorator";
 
 export function createNewBoard(board) {
   return async (dispatch) => {
-    try {
-      const boards = await serverApi.mainService.createNewBoard(board);
-      dispatch(getAllBoardResponse(boards));
-    } catch (e) {
-      // if you browser don`t support localStorage api || http error
-      dispatch(getAllBoardReject(e));
-    }
+    await allBoardsWrapper(dispatch, () => {
+      return serverApi.mainService.createNewBoard(board);
+    });
   };
 }

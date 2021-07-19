@@ -1,24 +1,10 @@
 import { serverApi } from "../../../server-api";
-import {
-  getAllBoardReject,
-  getAllBoardResponse,
-} from "../../reducers/boardsReducer";
-import {
-  getOneBoardReject,
-  getOneBoardResponse,
-} from "../../reducers/currentBoardReducer";
-import { BoardService } from "../../../server-api/localStorageServices/board";
+import { getOneBoardWrapper } from "../_decorator";
 
 export function createNewColumn(boardId, column) {
   return async (dispatch) => {
-    try {
-      const board = await serverApi.boardService.createNewColumn(
-        boardId,
-        column
-      );
-      dispatch(getOneBoardResponse(board));
-    } catch (e) {
-      dispatch(getOneBoardReject(e));
-    }
+    await getOneBoardWrapper(dispatch, () => {
+      return serverApi.boardService.createNewColumn(boardId, column);
+    });
   };
 }

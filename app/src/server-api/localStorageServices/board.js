@@ -1,4 +1,8 @@
 import { LocalStorageService } from "./_service";
+import {
+  addCurrentTask,
+  getCurrentTask,
+} from "../../redux/reducers/transferTaskHelpers";
 
 export class BoardService extends LocalStorageService {
   _getCurrentBoard(id) {
@@ -72,5 +76,16 @@ export class BoardService extends LocalStorageService {
     this._saveBoard(board);
 
     return board;
+  }
+
+  async transferTask(boardId, { dragged, dropped }) {
+    const board = this._getCurrentBoard(boardId);
+    const currentTask = getCurrentTask(board, dragged);
+
+    const changedBoard = addCurrentTask(board, currentTask, dropped);
+
+    this._saveBoard(changedBoard);
+
+    return changedBoard;
   }
 }

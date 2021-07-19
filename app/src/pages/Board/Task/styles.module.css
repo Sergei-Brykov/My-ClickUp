@@ -1,8 +1,8 @@
 .wrap {
     width: 300px;
+    padding: 4px 10px 0 10px;
     height: auto;
     min-width: 250px;
-    padding: 10px;
     background: #1e272e;
 }
 
@@ -10,12 +10,18 @@
     background: rgba(44, 52, 61, 0.6);
 }
 
+.drag {
+    opacity: .5;
+}
+
 .top {
     padding-bottom: 0!important;
+    margin: 10px 0 0 0;
 }
 
 .bottom {
     padding-top: 0!important;
+    margin: 0 0 10px 0;
 }
 
 .body {
@@ -46,7 +52,7 @@
     width: 100%;
     height: auto;
     min-width: 250px;
-    padding: 10px;
+    padding: 10px 10px 0 10px;
 }
 
 .btnWrap {

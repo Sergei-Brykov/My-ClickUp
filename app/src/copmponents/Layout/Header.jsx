@@ -16,7 +16,7 @@ export function Header({ user }) {
 function HomeTitle() {
   return (
     <Link className={styles.homePageLink} to="/">
-      <img className={styles.img} src={logo} alt="UINNO Jira" />
+      <img className={styles.img} src={"yo" || logo} alt="Jira" />
       <h1>My Jira</h1>
     </Link>
   );

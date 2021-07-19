@@ -4,7 +4,7 @@ import { TaskForm } from "../TaskForm/TaskForm";
 import { TaskBody } from "./TaskBody";
 import { DragAndDropTaskWrapper } from "./DragAndDropTaskWrapper";
 
-export function Task({ task, column, index }) {
+export function Task({ task, column, taskIndex, columnIndex }) {
   const [formOpen, setFormOpen] = useState(false);
 
   if (formOpen) {
@@ -16,7 +16,12 @@ export function Task({ task, column, index }) {
   }
 
   return (
-    <DragAndDropTaskWrapper task={task} column={column} index={index}>
+    <DragAndDropTaskWrapper
+      task={task}
+      column={column}
+      taskIndex={taskIndex}
+      columnIndex={columnIndex}
+    >
       <TaskBody {...task} openForm={() => setFormOpen(true)} />
     </DragAndDropTaskWrapper>
   );

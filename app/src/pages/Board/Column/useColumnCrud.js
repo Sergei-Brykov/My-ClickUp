@@ -4,7 +4,7 @@ import { useCallback, useState } from "react";
 import { deleteColumn } from "../../../redux/asyncActions/columns/deleteColumn";
 import { transferColumn } from "../../../redux/asyncActions/columns/transferColumn";
 
-export function useColumnCrud(column, index) {
+export function useColumnCrud({ column, columnIndex }) {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [isFormOpen, setFormOpen] = useState(false);
@@ -21,14 +21,14 @@ export function useColumnCrud(column, index) {
 
   const onTransfer = useCallback(
     (offset) => () => {
-      dispatch(transferColumn(id, column.id, index, offset));
+      dispatch(transferColumn(id, column.id, columnIndex, offset));
     },
     [column]
   );
 
   return {
-    crudApi: { onDelete, onUpdate, onTransfer },
-    formApi: {
+    crudService: { onDelete, onUpdate, onTransfer },
+    formService: {
       isFormOpen,
       openForm: () => setFormOpen(true),
       closeForm: () => setFormOpen(false),

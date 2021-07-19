@@ -1,41 +1,24 @@
 import styles from "./styles.module.css";
-import { ColumnForm } from "../ColumnForm";
-import { ColumnHeader } from "./ColumnHeader";
 import { useColumnCrud } from "./useColumnCrud";
-import { FormWrap } from "../../../copmponents/FormWrap";
-import { TaskForm } from "../TaskForm/TaskForm";
-import { useMemo } from "react";
-import { Task } from "../Task";
+import { ColumnHeaderWrap } from "./components/ColumnHeaderWrap";
+import { ColumnBodyWrap } from "./components/ColumnBodyWrap";
+import { ColumnFooterWrap } from "./components/ColumnFooterWrap";
+import { useContext } from "react";
+import { DragAndDropContext } from "../../../Providers/DragAndDropProvider";
 
-export function Column({ column, index, isLast }) {
-  const { crudApi, formApi } = useColumnCrud(column, index);
-
-  const context = useMemo(
-    () => ({ columnId: column.id, columnIndex: index }),
-    [column.id, index]
-  );
+export function Column(props) {
+  const { crudService, formService } = useColumnCrud(props);
+  const { columnDragOver } = useContext(DragAndDropContext);
 
   return (
-    <section>
-      {formApi.isFormOpen ? (
-        <ColumnForm column={column} onClose={formApi.closeForm} />
-      ) : (
-        <ColumnHeader
-          {...column}
-          {...crudApi}
-          index={index}
-          isLast={isLast}
-          openForm={formApi.openForm}
-        />
-      )}
-
-      {column.tasks.map((task, index) => (
-        <Task task={task} index={index} column={column} />
-      ))}
-
-      <div className={styles.columnWrap}>
-        <FormWrap Form={TaskForm} text="NEW TASK" context={context} />
-      </div>
+    <section
+      onDragOver={(e) => columnDragOver(e, props.columnIndex)}
+      data-column-id={props.column.id}
+      className={styles.section}
+    >
+      <ColumnHeaderWrap crudService={crudService} {...formService} {...props} />
+      <ColumnBodyWrap {...props} />
+      <ColumnFooterWrap {...props} />
     </section>
   );
 }

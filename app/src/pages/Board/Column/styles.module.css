@@ -5,6 +5,17 @@
     padding: 10px;
 }
 
+.section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: calc(100vh - 120px);
+}
+
+.grow {
+    flex-grow: 1;
+}
+
 .column {
     width: 100%;
 }

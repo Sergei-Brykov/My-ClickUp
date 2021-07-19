@@ -4,6 +4,7 @@ import { Column } from "./Column";
 import { FormWrap } from "../../copmponents/FormWrap";
 import { ColumnForm } from "./ColumnForm";
 import { Wrap } from "./ColumnForm/Wrap";
+import { DragAndDropProvider } from "../../Providers/DragAndDropProvider";
 
 export function BoardPage() {
   const [board, { loading, error }] = useBoard();
@@ -14,14 +15,16 @@ export function BoardPage() {
 
   return (
     <div className={styles.container}>
-      {board.columns?.map((column, index) => (
-        <Column
-          key={column.id}
-          index={index}
-          column={column}
-          isLast={index === board.columns.length - 1}
-        />
-      ))}
+      <DragAndDropProvider board={board}>
+        {board.columns?.map((column, columnIndex) => (
+          <Column
+            key={column.id}
+            columnIndex={columnIndex}
+            column={column}
+            isLast={columnIndex === board.columns.length - 1}
+          />
+        ))}
+      </DragAndDropProvider>
 
       <FormWrap text="NEW COLUMN" Form={ColumnForm} Wrap={Wrap} />
     </div>

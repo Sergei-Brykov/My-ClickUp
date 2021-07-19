@@ -10,7 +10,7 @@ export default function cl(...classes) {
       if (typeof cl === "object" && cl) {
         return Object.keys(cl).map((key) => (!!cl[key] ? key : ""));
       }
-      console.error("unexpected props in class name");
+
       return "";
     })
     .join(" ");

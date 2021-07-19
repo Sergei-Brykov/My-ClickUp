@@ -1,7 +1,7 @@
-import styles from "./styles.module.css";
-import { ChevronButton } from "./ChevronButtons";
-import { EditButton } from "../../../copmponents/Buttons/EditButton";
-import { DeleterButton } from "../../../copmponents/Buttons/DeleterButton";
+import styles from "../styles.module.css";
+import { ChevronButton } from "../../../../copmponents/Buttons/ChevronButtons";
+import { EditButton } from "../../../../copmponents/Buttons/EditButton";
+import { DeleterButton } from "../../../../copmponents/Buttons/DeleterButton";
 
 export function ColumnHeader({
   title,
@@ -10,7 +10,7 @@ export function ColumnHeader({
   openForm,
   onDelete,
   onTransfer,
-  index,
+  columnIndex,
   isLast,
 }) {
   return (
@@ -31,7 +31,7 @@ export function ColumnHeader({
           </div>
 
           <div className={styles.btnWrap}>
-            {index ? (
+            {columnIndex ? (
               <ChevronButton
                 onClick={onTransfer(-1)}
                 direction="left"

@@ -1,4 +1,4 @@
-import { IconButton } from "../../../copmponents/Buttons/IconButton";
+import { IconButton } from "./IconButton";
 import Icon from "@iconify/react";
 import chevronLeft from "@iconify-icons/mdi-light/chevron-left";
 import chevronRight from "@iconify-icons/mdi-light/chevron-right";

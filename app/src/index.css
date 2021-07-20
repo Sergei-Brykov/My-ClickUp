@@ -128,10 +128,21 @@ code {
     transition: 0.6s;
 }
 
+
+
+.pointer-events *:not(div[draggable]) {
+    pointer-events: none;
+}
+
+.drag {
+    opacity: .5;
+}
+
+/* don`t move this class*/
 .drop {
     height: 120px!important;
 }
 
-.pointer-events *:not(div[draggable]) {
-    pointer-events: none;
+.drop.drag-force-close {
+    height: 0!important;
 }

@@ -18,8 +18,8 @@ export function Modal(props) {
         </div>
         {isModal && (
           <ModalWrapper
-            context={isModal}
             {...props}
+            context={isModal}
             onClose={closeModalHandler}
           />
         )}

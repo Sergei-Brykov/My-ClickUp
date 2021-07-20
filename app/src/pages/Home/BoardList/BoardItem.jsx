@@ -10,6 +10,22 @@ import { deleteBoard } from "../../../redux/asyncActions/board/deleteBoard";
 import { EditButton } from "../../../copmponents/Buttons/EditButton";
 import { DeleterButton } from "../../../copmponents/Buttons/DeleterButton";
 
+function useBoardItem(id) {
+  const dispatch = useDispatch();
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
+  const stopEvent = useCallback((e) => {
+    e.stopPropagation();
+    e.preventDefault();
+  }, []);
+
+  const openForm = useCallback((e) => setIsFormOpen(true), []);
+  const closeForm = useCallback((e) => setIsFormOpen(false), []);
+  const onDelete = useCallback((e) => dispatch(deleteBoard(id)), []);
+
+  return { isFormOpen, stopEvent, openForm, closeForm, onDelete };
+}
+
 export function BoardItem(board) {
   const { isFormOpen, stopEvent, openForm, closeForm, onDelete } = useBoardItem(
     board.id
@@ -34,21 +50,4 @@ export function BoardItem(board) {
       </div>
     </Link>
   );
-}
-
-function useBoardItem(id) {
-  const dispatch = useDispatch();
-  const [isFormOpen, setIsFormOpen] = useState(false);
-
-  const stopEvent = useCallback((e) => {
-    e.stopPropagation();
-    e.preventDefault();
-  }, []);
-
-  const openForm = useCallback((e) => setIsFormOpen(true), []);
-  const closeForm = useCallback((e) => setIsFormOpen(false), []);
-
-  const onDelete = useCallback((e) => dispatch(deleteBoard(id)), []);
-
-  return { isFormOpen, stopEvent, openForm, closeForm, onDelete };
 }

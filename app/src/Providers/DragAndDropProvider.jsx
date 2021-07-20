@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { throttle } from "../helpers/throttle";
 import { isEqual } from "../helpers/isEqual";
-import { onDragCreator } from "../redux/reducers/currentBoardReducer";
 import { useParams } from "react-router-dom";
 import { transferTask } from "../redux/asyncActions/tasks/transferTask";
 
@@ -65,7 +64,7 @@ const buildNewDragged = (context, board, columnIndex) => {
   if (context === "top") {
     taskIndex = 0;
   } else {
-    taskIndex = board.columns[columnIndex].tasks.length - 1;
+    taskIndex = board.columns[columnIndex].tasks.length;
   }
 
   return { columnIndex, taskIndex };

@@ -13,10 +13,8 @@ export const boardsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_BOARDS_REQUEST:
       return { ...state, loading: true };
-
     case GET_ALL_BOARDS_RESPONSE:
       return { error: "", loading: false, boards: action.data };
-
     case GET_ALL_BOARDS_REJECT:
       return { ...state, error: action.data };
 

@@ -35,3 +35,19 @@
 .iconWrap:hover {
     background: #4f5661;
 }
+
+.closebtn {
+    border-radius: 50%;
+    padding: 5px;
+    transition: 0.3s;
+    transform: rotate(0);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.closebtn:hover {
+    background: #2b343b;
+    transform: rotate(90deg);
+}

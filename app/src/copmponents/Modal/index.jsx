@@ -2,6 +2,7 @@ import styles from "./styles.module.css";
 import cl from "../../helpers/classname";
 import { useModal } from "../../hooks/useModal";
 import { ModalWrapper } from "./ModalWrapper";
+import { CloseButton } from "../Buttons/CloseButton";
 
 export function Modal(props) {
   const [isModal, closeModalHandler] = useModal();
@@ -12,6 +13,9 @@ export function Modal(props) {
       onClick={closeModalHandler}
     >
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+        <div className={styles.closeBtnWrap}>
+          <CloseButton size={30} onClick={closeModalHandler} />
+        </div>
         {isModal && (
           <ModalWrapper
             context={isModal}

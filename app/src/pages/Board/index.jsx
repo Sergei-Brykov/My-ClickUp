@@ -1,5 +1,5 @@
 import styles from "./styles.module.css";
-import { useBoard } from "../../hooks/useBoard";
+import { useFetchBoard } from "../../hooks/useFetchBoard";
 import { Column } from "./Column";
 import { FormWrap } from "../../copmponents/FormWrap";
 import { ColumnForm } from "./ColumnForm";
@@ -9,7 +9,7 @@ import { Modal } from "../../copmponents/Modal";
 import { Layout } from "../../copmponents/Layout";
 
 export function BoardPage() {
-  const [board, { loading, error }] = useBoard();
+  const [board, { loading, error }] = useFetchBoard();
 
   if (error) return <>{error}</>;
   if (loading) return <>loading</>;

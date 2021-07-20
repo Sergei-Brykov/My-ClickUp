@@ -9,10 +9,12 @@ export const DragAndDropContext = React.createContext();
 
 export const DragAndDropProvider = ({ children, board }) => {
   const [isDragAndDrop, setIsDragAndDrop] = useState(false);
-  const { id } = useParams();
-  const dispatch = useDispatch();
+
   const [dragged, setDragged] = useState(null);
   const [dropped, setDropped] = useState(null);
+
+  const { id } = useParams();
+  const dispatch = useDispatch();
 
   const onDragStart = (newDragged) => {
     setIsDragAndDrop(true);
@@ -20,14 +22,20 @@ export const DragAndDropProvider = ({ children, board }) => {
   };
 
   const onDragOver = throttle((e, newDropped, div) => {
-    if (isEqual(newDropped, dragged)) return;
+    if (isEqual(newDropped, dragged)) {
+      setDropped(null);
+      return;
+    }
     setDropped(newDropped);
     div && div.classList.add("drop");
   });
 
   const onDragOverColumn = throttle((e, columnIndex, context, div) => {
     const newDropped = buildNewDragged(context, board, columnIndex);
-    if (isEqual(newDropped, dragged)) return;
+    if (isEqual(newDropped, dragged)) {
+      setDropped(null);
+      return;
+    }
     setDropped(newDropped);
     div && div.classList.add("drop");
   });

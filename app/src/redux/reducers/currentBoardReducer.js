@@ -9,6 +9,7 @@ const initialState = {
 export const GET_BOARD_REQUEST = "GET_BOARD_REQUEST";
 export const GET_BOARD_RESPONSE = "GET_BOARD_RESPONSE";
 export const GET_BOARD_REJECT = "GET_BOARD_REJECT";
+export const CLEAN_BOARD = "CLEAN_BOARD";
 
 export const OPEN_MODAL = "OPEN_MODAL";
 export const CLOSE_MODAL = "CLOSE_MODAL";
@@ -21,6 +22,8 @@ export const currentBoardReducer = (state = initialState, action) => {
       return { ...state, error: "", loading: false, board: action.data };
     case GET_BOARD_REJECT:
       return { ...state, error: action.data };
+    case CLEAN_BOARD:
+      return { ...state, board: null };
 
     case OPEN_MODAL:
       return { ...state, isModal: action.data };
@@ -44,5 +47,6 @@ export const getOneBoardReject = (error) => ({
   data: error,
 });
 
+export const cleanBoardCreator = () => ({ type: CLEAN_BOARD });
 export const openModalCreator = (data) => ({ type: OPEN_MODAL, data });
 export const closeModalCreator = () => ({ type: CLOSE_MODAL });

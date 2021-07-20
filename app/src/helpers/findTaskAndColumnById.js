@@ -9,5 +9,5 @@ export function findColumnById(board, columnId) {
 }
 
 export function findTaskById(column, taskId) {
-  return column?.tasks.find((task) => taskId === taskId);
+  return column?.tasks.find((task) => task.id === taskId);
 }

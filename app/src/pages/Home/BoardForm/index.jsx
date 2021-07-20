@@ -24,12 +24,11 @@ export function BoardForm({ onClose, board }) {
           value={form.values.title}
         />
 
-        <Button
-          className="mr-2"
-          onClick={() => console.log(2)}
-          disabled={form.disabledForm}
-        >
+        <Button type={"submit"} className="mr-2" disabled={form.disabledForm}>
           save
+        </Button>
+        <Button secondary className="mr-2" onClick={onClose}>
+          close
         </Button>
       </form>
       {error && <ErrorView error={error} />}

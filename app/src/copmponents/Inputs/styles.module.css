@@ -24,3 +24,14 @@
     color: white;
     margin-bottom: 8px;
 }
+
+.select {
+    border: none;
+    padding-left: 12px;
+    cursor: pointer;
+    outline: none;
+    width: 100%;
+    height: 55px;
+    background: #2b343b;
+    color:white;
+}

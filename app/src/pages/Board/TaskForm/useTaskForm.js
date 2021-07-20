@@ -8,9 +8,10 @@ import { updateTask } from "../../../redux/asyncActions/tasks/updateTask";
 const initData = {
   title: "",
   shortDescription: "",
+  description: "",
 };
 
-export function useTaskForm(onClose, { task, columnId }) {
+export function useTaskForm(onClose, { task, columnId, columnIndex }) {
   const { id: boardId } = useParams();
   const dispatch = useDispatch();
 
@@ -34,21 +35,23 @@ export function useTaskForm(onClose, { task, columnId }) {
 
     if (task) {
       settings.onSubmit = (values) => {
+        delete values.columnIndex;
         dispatch(updateTask(boardId, columnId, values));
         onClose();
       };
     } else {
       settings.onSubmit = (values) => {
+        delete values.columnIndex;
         dispatch(createNewTask(boardId, columnId, values));
         onClose();
       };
     }
 
     return settings;
-  }, [boardId, columnId]);
+  }, [boardId, columnId, columnIndex]);
 
   const form = useForm(formSettings);
-
+  console.log(form);
   return [form, createErrorsArray(form.errors)];
 }
 

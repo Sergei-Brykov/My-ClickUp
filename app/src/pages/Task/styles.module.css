@@ -1,0 +1,41 @@
+.container {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.title {
+    word-break: break-all;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    color: #7c8185;
+    margin-right: 10px;
+    font-weight: 300;
+    font-size: 22px;
+    text-transform: initial;
+}
+
+.copyInput{
+
+}
+
+.btnwrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.columnswrap {
+    display: flex;
+    justify-content: center;
+}
+
+.column {
+    width: 50%;
+    margin-right: 20px;
+}
+
+.nonemargin {
+    margin: 0;
+}

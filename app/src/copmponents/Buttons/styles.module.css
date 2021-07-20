@@ -11,6 +11,7 @@
     text-transform: uppercase;
     cursor: pointer;
     border: none;
+    transition: .3s;
 }
 
 .root:hover {
@@ -50,4 +51,11 @@
 .closebtn:hover {
     background: #2b343b;
     transform: rotate(90deg);
+}
+.secondary {
+    background: #f24d17;
+}
+
+.secondary:hover {
+    background: #c10e29;
 }

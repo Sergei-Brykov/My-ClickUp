@@ -125,7 +125,7 @@ code {
 
 .dropListener {
     height: 0;
-    transition: 0.6s;
+    transition: 0.2s;
 }
 
 
@@ -135,7 +135,7 @@ code {
 }
 
 .drag {
-    opacity: .5;
+    opacity: .1;
 }
 
 /* don`t move this class*/

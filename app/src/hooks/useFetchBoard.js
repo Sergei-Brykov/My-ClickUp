@@ -2,8 +2,9 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getOneBoard } from "../redux/asyncActions/board/getOneBoard";
+import { cleanBoardCreator } from "../redux/reducers/currentBoardReducer";
 
-export function useBoard() {
+export function useFetchBoard() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { board, loading, error, isModal } = useSelector(
@@ -13,7 +14,7 @@ export function useBoard() {
   useEffect(() => {
     dispatch(getOneBoard(id));
 
-    return () => {};
+    return () => dispatch(cleanBoardCreator());
   }, []);
 
   return [board, { loading, error, id, isModal }];

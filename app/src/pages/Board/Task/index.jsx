@@ -9,7 +9,10 @@ export function Task({ task, column, taskIndex, columnIndex }) {
   if (formOpen) {
     return (
       <div className={styles.wrap}>
-        <TaskForm onClose={() => setFormOpen(false)} context={{ task }} />
+        <TaskForm
+          onClose={() => setFormOpen(false)}
+          context={{ task, columnId: column.id }}
+        />
       </div>
     );
   }
@@ -17,6 +20,7 @@ export function Task({ task, column, taskIndex, columnIndex }) {
   return (
     <TaskView
       task={task}
+      column={column}
       taskIndex={taskIndex}
       columnIndex={columnIndex}
       openForm={() => setFormOpen(true)}

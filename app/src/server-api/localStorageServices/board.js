@@ -6,7 +6,13 @@ import {
 
 export class BoardService extends LocalStorageService {
   _getCurrentBoard(id) {
-    return JSON.parse(localStorage.getItem(`board-${id}`));
+    const board = JSON.parse(localStorage.getItem(`board-${id}`));
+
+    if (!board) {
+      throw new Error("Ooops something wrong... current board did`t find");
+    }
+
+    return board;
   }
 
   _getCurrentColumn(board, id) {
@@ -78,8 +84,34 @@ export class BoardService extends LocalStorageService {
     return board;
   }
 
+  async put(boardId, columnId, newTask) {
+    const board = this._getCurrentBoard(boardId);
+    const column = this._getCurrentColumn(board, columnId);
+
+    column.tasks = column.tasks.map((task) => {
+      if (task.id === newTask.id) {
+        return newTask;
+      }
+      return task;
+    });
+
+    this._saveBoard(board);
+
+    return board;
+  }
+
+  async deleteTask(boardId, columnId, taskId) {
+    const board = this._getCurrentBoard(boardId);
+    const column = this._getCurrentColumn(board, columnId);
+
+    column.tasks = column.tasks.filter((task) => task.id !== taskId);
+
+    this._saveBoard(board);
+
+    return board;
+  }
+
   async transferTask(boardId, { dragged, dropped }) {
-    console.log("dragged, dropped", dragged, dropped);
     const board = this._getCurrentBoard(boardId);
     const currentTask = getCurrentTask(board, dragged);
 

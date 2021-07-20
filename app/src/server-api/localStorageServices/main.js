@@ -14,7 +14,13 @@ export class MainService extends LocalStorageService {
   }
 
   async getOneBoard(id) {
-    return JSON.parse(localStorage.getItem(`board-${id}`));
+    const board = JSON.parse(localStorage.getItem(`board-${id}`));
+
+    if (!board) {
+      throw new Error("Ooops something wrong... current board did`t find");
+    }
+
+    return board;
   }
 
   async createNewBoard(board) {

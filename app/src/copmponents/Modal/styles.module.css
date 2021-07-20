@@ -1,0 +1,30 @@
+.container {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(255,255,255, 0.2);
+    position: fixed;
+    top:0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    transform: scale(0);
+    transition: 0.1s;
+}
+
+.container.active {
+    transform: scale(1);
+}
+
+.modal {
+    height: 400px;
+    position: relative;
+    z-index: 3;
+    padding: 20px;
+    background-color: #2b343b;
+    border-radius: 12px;
+    width: 65%;
+    max-width: 65%;
+
+}

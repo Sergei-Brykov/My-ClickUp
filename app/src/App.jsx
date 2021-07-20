@@ -3,11 +3,7 @@ import { MainRoutes } from "./Providers/MainRoutes";
 import { Layout } from "./copmponents/Layout";
 
 function App() {
-  return (
-    <Layout>
-      <MainRoutes />
-    </Layout>
-  );
+  return <MainRoutes />;
 }
 
 export default App;

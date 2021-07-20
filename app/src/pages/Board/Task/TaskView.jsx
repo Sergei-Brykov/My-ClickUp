@@ -35,7 +35,7 @@ function useDragAndDrop(columnIndex, taskIndex) {
   };
 }
 
-export function TaskView({ task, openForm, taskIndex, columnIndex }) {
+export function TaskView({ task, column, openForm, taskIndex, columnIndex }) {
   const { ref, classes, actions } = useDragAndDrop(columnIndex, taskIndex);
 
   return (
@@ -48,9 +48,9 @@ export function TaskView({ task, openForm, taskIndex, columnIndex }) {
       onDragEnd={actions.onDragEnd}
     >
       <div ref={ref} className="dropListener" />
-      <div draggable className={cl(styles.container)}>
-        <TaskHeader {...task} />
-        <TaskBody {...task} openForm={openForm} />
+      <div draggable className={styles.container}>
+        <TaskHeader column={column} {...task} openForm={openForm} />
+        <TaskBody {...task} />
       </div>
     </div>
   );

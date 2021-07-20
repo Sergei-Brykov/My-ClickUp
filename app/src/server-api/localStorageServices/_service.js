@@ -13,4 +13,8 @@ export class LocalStorageService {
 
     localStorage.setItem(`board-${board.id}`, JSON.stringify(board));
   }
+
+  _getParams(string) {
+    return string.split("/");
+  }
 }

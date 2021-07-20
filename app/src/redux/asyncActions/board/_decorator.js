@@ -9,6 +9,6 @@ export async function allBoardsWrapper(dispatch, fun) {
     dispatch(getAllBoardResponse(boards));
   } catch (e) {
     // if you browser don`t support localStorage api || http error
-    dispatch(getAllBoardReject(e));
+    dispatch(getAllBoardReject(e.message));
   }
 }

@@ -12,7 +12,7 @@ function useDndFooter(columnIndex) {
     classes: cl(
       styles.columnWrap,
       styles.grow,
-      isDragAndDrop && "pointer-events"
+      isDragAndDrop ? "pointer-events" : "none"
     ),
     onDragOver: (e) => onDragOverColumn(e, columnIndex, "bottom", null),
   };

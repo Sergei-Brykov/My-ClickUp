@@ -4,7 +4,7 @@ import { allBoardsWrapper } from "./_wrapper";
 export function updateBoard(board) {
   return async (dispatch) => {
     await allBoardsWrapper(dispatch, () => {
-      return serverApi.mainService.updateBoard(board.id, board);
+      return serverApi.allBoardsTransport.updateBoard(board.id, board);
     });
   };
 }

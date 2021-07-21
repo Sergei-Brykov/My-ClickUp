@@ -4,7 +4,7 @@ import { getOneBoardWrapper } from "../_wrapper";
 export function transferColumn(boardId, columnId, index, offset) {
   return async (dispatch) => {
     await getOneBoardWrapper(dispatch, () => {
-      return serverApi.boardService.transferColumn(
+      return serverApi.boardTransport.transferColumn(
         boardId,
         columnId,
         index,

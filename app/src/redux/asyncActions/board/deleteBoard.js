@@ -4,7 +4,7 @@ import { allBoardsWrapper } from "./_wrapper";
 export function deleteBoard(id) {
   return async (dispatch) => {
     await allBoardsWrapper(dispatch, () => {
-      return serverApi.mainService.deleteBoard(id);
+      return serverApi.allBoardsTransport.deleteBoard(id);
     });
   };
 }

@@ -4,7 +4,7 @@ import { allBoardsWrapper } from "./_wrapper";
 export function createNewBoard(board) {
   return async (dispatch) => {
     await allBoardsWrapper(dispatch, () => {
-      return serverApi.mainService.createNewBoard(board);
+      return serverApi.allBoardsTransport.createNewBoard(board);
     });
   };
 }

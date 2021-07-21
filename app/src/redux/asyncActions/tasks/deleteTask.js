@@ -4,7 +4,7 @@ import { getOneBoardWrapper } from "../_wrapper";
 export function deleteTask(boardId, columnId, taskId) {
   return async (dispatch) => {
     await getOneBoardWrapper(dispatch, () => {
-      return serverApi.boardService.deleteTask(boardId, columnId, taskId);
+      return serverApi.boardTransport.deleteTask(boardId, columnId, taskId);
     });
   };
 }

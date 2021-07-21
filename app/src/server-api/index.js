@@ -1,11 +1,9 @@
-import { MainService } from "./localStorageTransport/main";
-import { BoardTransport } from "./localStorageTransport/board";
+import { AllBoardsService } from "./LSTransport/AllBoardsService";
+import { BoardService } from "./LSTransport/BoardService";
+import { LocalStorageDB } from "./LSTransport/LocalStorageDB";
 
-class ServerApi {
-  constructor(mainService, boardService) {
-    this.mainService = mainService;
-    this.boardService = boardService;
-  }
-}
-
-export const serverApi = new ServerApi(new MainService(), new BoardTransport());
+//I have no reason to create a class
+export const serverApi = {
+  boardTransport: new BoardService(new LocalStorageDB()),
+  allBoardsTransport: new AllBoardsService(new LocalStorageDB()),
+};

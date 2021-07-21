@@ -1,9 +1,13 @@
-import useForm from "../../../hooks/useForm";
+import useForm from "./useForm";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useMemo } from "react";
-import { createNewTask } from "../../../redux/asyncActions/tasks/createdNewTask";
-import { updateTask } from "../../../redux/asyncActions/tasks/updateTask";
+import { createNewTask } from "../redux/asyncActions/tasks/createdNewTask";
+import { updateTask } from "../redux/asyncActions/tasks/updateTask";
+import {
+  buildUpdateBody,
+  createErrorsArray,
+} from "../pages/Task/TaskForm/helpers";
 
 const init = {
   title: "",
@@ -12,7 +16,7 @@ const init = {
 };
 
 export function useTaskForm(onClose, { task, columnId, columnIndex }) {
-  const { id: boardId } = useParams();
+  const { boardId } = useParams();
   const dispatch = useDispatch();
 
   const formSettings = useMemo(() => {
@@ -59,25 +63,4 @@ export function useTaskForm(onClose, { task, columnId, columnIndex }) {
   const form = useForm(formSettings);
 
   return [form, createErrorsArray(form.errors)];
-}
-
-function buildUpdateBody(values, initialIndex) {
-  let changeColumnIndex = null;
-
-  if (values.location && values.location !== initialIndex) {
-    changeColumnIndex = values.location;
-  }
-
-  delete values.location;
-  const body = { newTask: values };
-
-  if (changeColumnIndex) {
-    body.changeColumnIndex = changeColumnIndex;
-  }
-
-  return body;
-}
-
-function createErrorsArray(errors) {
-  return Object.entries(errors).map((error) => error[1]);
 }

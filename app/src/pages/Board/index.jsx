@@ -5,9 +5,9 @@ import { FormWrap } from "../../components/FormWrap";
 import { ColumnForm } from "./ColumnForm";
 import { Wrap } from "./ColumnForm/Wrap";
 import { DragAndDropProvider } from "../../Providers/DragAndDropProvider";
-import { Layout } from "../../components/Layout";
 import { ErrorLayout } from "../../components/ErrorLayout";
 import { LoadingLayout } from "../../components/LoadingLayout";
+import { Modal } from "../../components/Modal";
 
 export function BoardPage() {
   const [board, { loading, error }] = useFetchBoard();
@@ -17,23 +17,21 @@ export function BoardPage() {
   if (!board) return <ErrorLayout error={"Sorry you have invalid link"} />;
 
   return (
-    <Layout board={board}>
-      <div className={styles.container}>
-        <DragAndDropProvider board={board}>
-          {board.columns?.map((column, columnIndex) => (
-            <Column
-              key={column.id}
-              columnIndex={columnIndex}
-              column={column}
-              isLast={columnIndex === board.columns.length - 1}
-            />
-          ))}
-        </DragAndDropProvider>
-
-        <FormWrap text="NEW COLUMN" wrap={Wrap}>
-          {({ onClose }) => <ColumnForm onClose={onClose} />}
-        </FormWrap>
-      </div>
-    </Layout>
+    <div className={styles.container}>
+      <Modal board={board} />
+      <DragAndDropProvider board={board}>
+        {board.columns?.map((column, columnIndex) => (
+          <Column
+            key={column.id}
+            columnIndex={columnIndex}
+            column={column}
+            isLast={columnIndex === board.columns.length - 1}
+          />
+        ))}
+      </DragAndDropProvider>
+      <FormWrap text="NEW COLUMN" wrap={Wrap}>
+        {({ onClose }) => <ColumnForm onClose={onClose} />}
+      </FormWrap>
+    </div>
   );
 }

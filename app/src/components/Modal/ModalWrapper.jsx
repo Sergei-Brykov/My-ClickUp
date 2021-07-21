@@ -1,5 +1,5 @@
 import { TASK_MODAL } from "./contextType";
-import { SingleTask } from "../../pages/Task/SingleTask";
+import { SingleTask } from "../../pages/Task/SingleTask/SingleTask";
 import { findTaskAndColumnById } from "../../helpers/findTaskAndColumnById";
 
 export function ModalWrapper({ type, modalData, ...rest }) {

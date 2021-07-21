@@ -13,7 +13,7 @@ export const DragAndDropProvider = ({ children, board }) => {
   const [dragged, setDragged] = useState(null);
   const [dropped, setDropped] = useState(null);
 
-  const { id } = useParams();
+  const { boardId } = useParams();
   const dispatch = useDispatch();
 
   const onDragStart = (newDragged) => {
@@ -47,7 +47,7 @@ export const DragAndDropProvider = ({ children, board }) => {
   const onDragEnd = () => {
     setIsDragAndDrop(false);
     if (!dragged || !dropped) return;
-    dispatch(transferTask(id, { dragged, dropped }));
+    dispatch(transferTask(boardId, { dragged, dropped }));
     setDropped(null);
   };
 

@@ -5,23 +5,23 @@ import { deleteColumn } from "../../../redux/asyncActions/columns/deleteColumn";
 import { transferColumn } from "../../../redux/asyncActions/columns/transferColumn";
 
 export function useColumnCrud({ column, columnIndex }) {
-  const { id } = useParams();
+  const { boardId } = useParams();
   const dispatch = useDispatch();
   const [isFormOpen, setFormOpen] = useState(false);
 
   const onDelete = useCallback(
-    () => dispatch(deleteColumn(id, column.id)),
+    () => dispatch(deleteColumn(boardId, column.id)),
     [column]
   );
 
   const onUpdate = useCallback(
-    () => dispatch(deleteColumn(id, column)),
+    () => dispatch(deleteColumn(boardId, column)),
     [column]
   );
 
   const onTransfer = useCallback(
     (offset) => () => {
-      dispatch(transferColumn(id, column.id, columnIndex, offset));
+      dispatch(transferColumn(boardId, column.id, columnIndex, offset));
     },
     [column]
   );

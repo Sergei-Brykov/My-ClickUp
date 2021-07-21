@@ -1,24 +1,45 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 
 export function useCopyToClipboard(ref) {
+  const [alert, setAlert] = useState(null);
+
   const copyToClipboard = useCallback((content) => {
     try {
-      navigator.clipboard
+      return navigator.clipboard
         .writeText(content)
-        .then(() => console.log("Successfully copied"))
-        .catch(() =>
-          alert(`Error occured: please do this manually - "${content}"`)
-        );
+        .then(() => true)
+        .catch(console.log);
     } catch (err) {}
   }, []);
 
   const copyHandler = useCallback(
-    (content) => {
-      copyToClipboard(content);
-      ref.current.select();
+    async (content) => {
+      const success = await copyToClipboard(content);
+      if (!success) {
+        setAlert(
+          <span className="alert-error">
+            Sorry copy manually your browser does not support copying
+          </span>
+        );
+        setTimeout(() => setAlert(null), 3000);
+        return;
+      }
+      if (document.selection) {
+        // IE
+        const range = document.body.createTextRange();
+        range.moveToElementText(ref.current);
+        range.select();
+      } else if (window.getSelection) {
+        const r = document.createRange();
+        r.selectNode(ref.current);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(r);
+      }
+      setAlert(<span className="alert">Successfully copied</span>);
+      setTimeout(() => setAlert(null), 3000);
     },
     [ref]
   );
 
-  return [copyHandler, copyToClipboard];
+  return [copyHandler, copyToClipboard, alert];
 }

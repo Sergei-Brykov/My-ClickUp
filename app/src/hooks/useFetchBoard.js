@@ -5,17 +5,17 @@ import { getOneBoard } from "../redux/asyncActions/board/getOneBoard";
 import { cleanBoardCreator } from "../redux/reducers/currentBoardReducer";
 
 export function useFetchBoard() {
-  const { id } = useParams();
+  const { boardId } = useParams();
   const dispatch = useDispatch();
   const { board, loading, error, isModal } = useSelector(
     (state) => state.currentBoard
   );
 
   useEffect(() => {
-    dispatch(getOneBoard(id));
+    dispatch(getOneBoard(boardId));
 
     return () => dispatch(cleanBoardCreator());
   }, []);
 
-  return [board, { loading, error, id, isModal }];
+  return [board, { loading, error, boardId, isModal }];
 }

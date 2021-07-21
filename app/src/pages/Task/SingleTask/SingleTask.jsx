@@ -1,13 +1,14 @@
-import { MainInput } from "../../components/Inputs/MainInput";
-import { MainLabel } from "../../components/Inputs/MainLabel";
-import { MainTextarea } from "../../components/Inputs/MainTextarea";
+import { MainInput } from "../../../components/Inputs/MainInput";
+import { MainLabel } from "../../../components/Inputs/MainLabel";
+import { MainTextarea } from "../../../components/Inputs/MainTextarea";
 import styles from "./styles.module.css";
-import { useTaskForm } from "./TaskForm/useTaskForm";
-import { Button } from "../../components/Buttons";
-import { MainSelect } from "../../components/Inputs/MainSelect";
-import cl from "../../helpers/classname";
+import { useTaskForm } from "../../../hooks/useTaskForm";
+import { Button } from "../../../components/Buttons";
+import { MainSelect } from "../../../components/Inputs/MainSelect";
+import cl from "../../../helpers/classname";
 import { TaskHeader } from "./TaskHeader";
-import { ErrorView } from "../../components/ErrorView";
+import { ErrorView } from "../../../components/ErrorView";
+import { useTaskHandle } from "../../../hooks/useTaskHandle";
 
 function buildSelectData(columns) {
   return columns.map((column, index) => ({
@@ -16,7 +17,14 @@ function buildSelectData(columns) {
   }));
 }
 
-export function SingleTask({ task, board, column, onClose }) {
+export function SingleTask({
+  task,
+  board,
+  column,
+  onClose = () => alert("task save"),
+}) {
+  const [deleteTaskHandler] = useTaskHandle(task.id, column, onClose);
+
   const [form] = useTaskForm(onClose, {
     task,
     columnId: column.id,
@@ -61,10 +69,11 @@ export function SingleTask({ task, board, column, onClose }) {
       </div>
       <MainLabel
         size={24}
-        htmlFor={"task-title"}
+        htmlFor={"task-s-description"}
         title={"Short description:"}
       />
       <MainTextarea
+        id="task-s-description"
         value={form.values.shortDescription}
         onChange={form.onChange("shortDescription")}
       />
@@ -76,16 +85,16 @@ export function SingleTask({ task, board, column, onClose }) {
       )}
       <MainLabel
         size={24}
-        htmlFor={"task-title"}
+        htmlFor={"task-description"}
         title={"Main description: "}
       />
       <MainTextarea
         rows={8}
-        value={task.description}
+        value={form.values.description}
         onChange={form.onChange("description")}
       />
       <div className={styles.btnwrap}>
-        <Button secondary type="button">
+        <Button onClick={deleteTaskHandler} secondary type="button">
           delete
         </Button>
         <Button disabled={form.disabledForm} type="submit">

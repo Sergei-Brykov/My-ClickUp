@@ -1,45 +1,49 @@
 .main {
-  height: 100vh;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .content {
-  flex-grow: 1;
-  overflow-x: auto;
+    flex-grow: 1;
+    overflow-x: auto;
 }
 
 .header {
-  width: 100vw;
-  height: 80px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #2b343b;
-  border-bottom-color: #1e272e;
+    width: 100vw;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #2b343b;
+    border-bottom-color: #1e272e;
+}
+
+.title {
+  font-size: 42px;
 }
 
 .homePageLink {
-  display: flex;
-  align-items: center;
-  background: #2b343b;
-  padding-right: 20px;
-  transition: background 0.5s;
+    display: flex;
+    align-items: center;
+    background: #2b343b;
+    padding-right: 20px;
+    transition: background 0.5s;
 }
 
 .homePageLink:hover {
-  background: #1e272e;
+    background: #1e272e;
 }
 
 .user {
-  margin: 20px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  overflow: hidden;
+    margin: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
 }
 
-.img{
-  margin: 20px;
+.img {
+    margin: 20px;
 }

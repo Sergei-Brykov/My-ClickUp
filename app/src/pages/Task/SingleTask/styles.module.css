@@ -1,3 +1,11 @@
+.wrap {
+    max-width: 1250px;
+    margin: 30px auto;
+    padding: 20px;
+    border: 1px solid #242d32;
+    border-radius: 8px;
+}
+
 .container {
     width: 100%;
     max-width: 1200px;
@@ -16,16 +24,25 @@
     text-transform: initial;
 }
 
-.copyInput {
-
+.link {
+    font-size: 20px;
+    text-decoration: underline;
+    flex-grow: 1;
+    width: 100%;
+    background: #2b343b;
+    outline: none;
+    border: none;
+    padding: 10px 12px;
+    display: flex;
+    justify-content: space-between;
 }
 
-.linkInput {
-    font-size: 14px;
-    text-decoration: underline;
+.spanlink {
     color: #acaac4;
-    flex-grow: 1;
-    cursor: not-allowed;
+}
+
+.spanlink:hover {
+    color: #9992e5;
 }
 
 .btnwrap {

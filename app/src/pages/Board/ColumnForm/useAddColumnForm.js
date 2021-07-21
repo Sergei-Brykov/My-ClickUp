@@ -12,7 +12,7 @@ const init = {
 };
 
 export function useAddColumnForm(onClose, column) {
-  const { id } = useParams();
+  const { boardId } = useParams();
   const dispatch = useDispatch();
 
   const formSettings = useMemo(() => {
@@ -31,14 +31,14 @@ export function useAddColumnForm(onClose, column) {
 
     if (column) {
       settings.onSubmit = (values) => {
-        dispatch(updateColumn(id, values));
+        dispatch(updateColumn(boardId, values));
         onClose();
       };
     } else {
       settings.onSubmit = (values) => {
         values.createdAt = Date.now();
 
-        dispatch(createNewColumn(id, values));
+        dispatch(createNewColumn(boardId, values));
         onClose();
       };
     }

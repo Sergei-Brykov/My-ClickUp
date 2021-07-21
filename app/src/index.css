@@ -146,3 +146,11 @@ code {
 .drop.drag-force-close {
     height: 0!important;
 }
+
+.alert {
+    color: #4f5661;
+}
+
+.alert-error {
+    color: #f24d17;
+}

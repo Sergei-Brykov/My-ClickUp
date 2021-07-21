@@ -3,7 +3,7 @@ import { MainInput } from "../../../components/Inputs/MainInput";
 import { MainTextarea } from "../../../components/Inputs/MainTextarea";
 import { MainLabel } from "../../../components/Inputs/MainLabel";
 import { Button } from "../../../components/Buttons";
-import { useTaskForm } from "./useTaskForm";
+import { useTaskForm } from "../../../hooks/useTaskForm";
 import { ErrorView } from "../../../components/ErrorView";
 
 export function TaskForm({ onClose, context }) {
@@ -30,10 +30,12 @@ export function TaskForm({ onClose, context }) {
         />
 
         <div className={styles.btnWrap}>
+          <Button secondary type="button" onClick={onClose}>
+            close
+          </Button>
           <Button type="submit" disabled={form.disabledForm}>
             save
           </Button>
-          <Button onClick={onClose}>close</Button>
         </div>
       </form>
       {errors.map((error, index) => (

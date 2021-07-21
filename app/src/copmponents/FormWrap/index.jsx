@@ -1,16 +1,12 @@
 import { useState } from "react";
 import styles from "./styles.module.css";
+import { Fragment } from "react";
 
-export function FormWrap({
-  Form,
-  Wrap = ({ children }) => children,
-  text,
-  context,
-}) {
+export function FormWrap({ wrap: Wrap = Fragment, text, children }) {
   const [isActive, setIsActive] = useState(false);
 
   return isActive ? (
-    <Form context={context} onClose={() => setIsActive(false)} />
+    children({ onClose: () => setIsActive(false) })
   ) : (
     <Wrap>
       <OpenFormView onOpen={() => setIsActive(true)} text={text} />

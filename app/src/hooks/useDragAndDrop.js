@@ -10,6 +10,7 @@ export function useDragAndDropItem(columnIndex, taskIndex) {
 
   return {
     ref,
+    // these classes are the same for the whole application, they can be concatenated because the cl function returns a string
     classes: {
       dragContainerClasses: cl(
         isDrag && "drag",

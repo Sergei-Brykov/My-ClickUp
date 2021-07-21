@@ -29,7 +29,9 @@ export function BoardPage() {
           ))}
         </DragAndDropProvider>
 
-        <FormWrap text="NEW COLUMN" Form={ColumnForm} Wrap={Wrap} />
+        <FormWrap text="NEW COLUMN" wrap={Wrap}>
+          {({ onClose }) => <ColumnForm onClose={onClose} />}
+        </FormWrap>
       </div>
     </Layout>
   );

@@ -9,11 +9,7 @@ function useDndFooter(columnIndex) {
   const { isDragAndDrop, onDragOverColumn } = useContext(DragAndDropContext);
 
   return {
-    classes: cl(
-      styles.columnWrap,
-      styles.grow,
-      isDragAndDrop ? "pointer-events" : "none"
-    ),
+    classes: isDragAndDrop ? "pointer-events" : "none",
     onDragOver: (e) => onDragOverColumn(e, columnIndex, "bottom", null),
   };
 }
@@ -27,8 +23,13 @@ export function ColumnFooterWrap({ column, index, columnIndex }) {
   );
 
   return (
-    <div onDragOver={onDragOver} className={classes}>
-      <FormWrap Form={TaskForm} text="NEW TASK" context={context} />
+    <div
+      onDragOver={onDragOver}
+      className={cl(styles.columnWrap, styles.grow, classes)}
+    >
+      <FormWrap text="NEW TASK">
+        {({ onClose }) => <TaskForm onClose={onClose} context={context} />}
+      </FormWrap>
     </div>
   );
 }

@@ -1,10 +1,10 @@
 import styles from "./styles.module.css";
-import { MainInput } from "../../../copmponents/Inputs/MainInput";
-import { MainTextarea } from "../../../copmponents/Inputs/MainTextarea";
-import { MainLabel } from "../../../copmponents/Inputs/MainLabel";
-import { Button } from "../../../copmponents/Buttons";
+import { MainInput } from "../../../components/Inputs/MainInput";
+import { MainTextarea } from "../../../components/Inputs/MainTextarea";
+import { MainLabel } from "../../../components/Inputs/MainLabel";
+import { Button } from "../../../components/Buttons";
 import { useTaskForm } from "./useTaskForm";
-import { ErrorView } from "../../../copmponents/ErrorView";
+import { ErrorView } from "../../../components/ErrorView";
 
 export function TaskForm({ onClose, context }) {
   const [form, errors] = useTaskForm(onClose, context);

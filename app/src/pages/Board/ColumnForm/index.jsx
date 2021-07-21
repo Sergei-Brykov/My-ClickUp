@@ -1,8 +1,8 @@
 import styles from "./styles.module.css";
 import cl from "../../../helpers/classname";
-import { Button } from "../../../copmponents/Buttons";
-import { MainInput } from "../../../copmponents/Inputs/MainInput";
-import { ErrorView } from "../../../copmponents/ErrorView";
+import { Button } from "../../../components/Buttons";
+import { MainInput } from "../../../components/Inputs/MainInput";
+import { ErrorView } from "../../../components/ErrorView";
 import { colors } from "../../../config/colors";
 import { useAddColumnForm } from "./useAddColumnForm";
 

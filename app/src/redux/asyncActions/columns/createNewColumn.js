@@ -1,5 +1,5 @@
 import { serverApi } from "../../../server-api";
-import { getOneBoardWrapper } from "../_decorator";
+import { getOneBoardWrapper } from "../_wrapper";
 
 export function createNewColumn(boardId, column) {
   return async (dispatch) => {

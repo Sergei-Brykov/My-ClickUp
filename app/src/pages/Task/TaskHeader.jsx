@@ -1,13 +1,13 @@
 import styles from "./styles.module.css";
-import { BreadCrums } from "../../copmponents/BreadCrums";
+import { BreadCrums } from "../../components/BreadCrums";
 import cl from "../../helpers/classname";
-import { MainLabel } from "../../copmponents/Inputs/MainLabel";
-import { MainInput } from "../../copmponents/Inputs/MainInput";
+import { MainLabel } from "../../components/Inputs/MainLabel";
+import { MainInput } from "../../components/Inputs/MainInput";
 import { path } from "../../Providers/path";
 import { useCallback, useRef } from "react";
 
 import { normalizeTime } from "../../helpers/normalizeTime";
-import { CopyButton } from "../../copmponents/Buttons/CopyButton";
+import { CopyButton } from "../../components/Buttons/CopyButton";
 
 function buildBreadCrumsData(board, column) {
   return [

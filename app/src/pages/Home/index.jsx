@@ -1,9 +1,9 @@
 import styles from "./styles.module.css";
 import { BoardForm } from "./BoardForm";
-import { FormWrap } from "../../copmponents/FormWrap";
+import { FormWrap } from "../../components/FormWrap";
 import { BoardList } from "./BoardList";
 import { useFetchAllBoards } from "../../hooks/useFetchAllBoards";
-import { Layout } from "../../copmponents/Layout";
+import { Layout } from "../../components/Layout";
 
 export function HomePage() {
   const [boards, { loading, error }] = useFetchAllBoards();

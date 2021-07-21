@@ -1,5 +1,5 @@
 import { serverApi } from "../../../server-api";
-import { getOneBoardWrapper } from "../_decorator";
+import { getOneBoardWrapper } from "../_wrapper";
 
 export function deleteTask(boardId, columnId, taskId) {
   return async (dispatch) => {

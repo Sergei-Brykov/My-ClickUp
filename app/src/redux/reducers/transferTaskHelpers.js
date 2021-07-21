@@ -1,4 +1,4 @@
-export function getCurrentTask(board, dragged, isLocal = false) {
+export function getCurrentTaskAndCutFromColumn(board, dragged) {
   const { columnIndex, taskIndex } = dragged;
   const copy = board.columns[columnIndex].tasks.slice();
 

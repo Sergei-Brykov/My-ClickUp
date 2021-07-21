@@ -1,6 +1,6 @@
 import styles from "./styles.module.css";
 import { useState } from "react";
-import { TaskForm } from "../TaskForm/TaskForm";
+import { TaskForm } from "../../Task/TaskForm/TaskForm";
 import { TaskView } from "./TaskView";
 
 export function Task({ task, column, taskIndex, columnIndex }) {

@@ -5,7 +5,7 @@ import { ModalWrapper } from "./ModalWrapper";
 import { CloseButton } from "../Buttons/CloseButton";
 
 export function Modal(props) {
-  const [isModal, closeModalHandler] = useModal();
+  const { isModal, modalData, type, closeModalHandler } = useModal();
 
   return (
     <div
@@ -19,7 +19,8 @@ export function Modal(props) {
         {isModal && (
           <ModalWrapper
             {...props}
-            context={isModal}
+            type={type}
+            modalData={modalData}
             onClose={closeModalHandler}
           />
         )}

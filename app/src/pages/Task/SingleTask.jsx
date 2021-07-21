@@ -1,13 +1,13 @@
-import { MainInput } from "../../copmponents/Inputs/MainInput";
-import { MainLabel } from "../../copmponents/Inputs/MainLabel";
-import { MainTextarea } from "../../copmponents/Inputs/MainTextarea";
+import { MainInput } from "../../components/Inputs/MainInput";
+import { MainLabel } from "../../components/Inputs/MainLabel";
+import { MainTextarea } from "../../components/Inputs/MainTextarea";
 import styles from "./styles.module.css";
-import { useTaskForm } from "../Board/TaskForm/useTaskForm";
-import { Button } from "../../copmponents/Buttons";
-import { MainSelect } from "../../copmponents/Inputs/MainSelect";
+import { useTaskForm } from "./TaskForm/useTaskForm";
+import { Button } from "../../components/Buttons";
+import { MainSelect } from "../../components/Inputs/MainSelect";
 import cl from "../../helpers/classname";
 import { TaskHeader } from "./TaskHeader";
-import { ErrorView } from "../../copmponents/ErrorView";
+import { ErrorView } from "../../components/ErrorView";
 
 function buildSelectData(columns) {
   return columns.map((column, index) => ({
@@ -17,9 +17,14 @@ function buildSelectData(columns) {
 }
 
 export function SingleTask({ task, board, column, onClose }) {
-  const [form] = useTaskForm(onClose, { task, columnId: column.id });
+  const [form] = useTaskForm(onClose, {
+    task,
+    columnId: column.id,
+    columnIndex: board.columns.findIndex((tmp) => tmp.id === column.id),
+  });
 
   if (!task) return null;
+  console.log(form);
 
   return (
     <form className={styles.container} onSubmit={form.onSubmit}>
@@ -45,8 +50,9 @@ export function SingleTask({ task, board, column, onClose }) {
           />
           <MainSelect
             id={"task-location"}
+            onChange={(e) => form.customChange("location", e.target.value)}
             items={buildSelectData(board.columns)}
-            value={board.columns.findIndex((tmp) => tmp.id === column.id)}
+            value={form.values.location}
           />
         </div>
       </div>
@@ -70,10 +76,10 @@ export function SingleTask({ task, board, column, onClose }) {
         onChange={form.onChange("description")}
       />
       <div className={styles.btnwrap}>
-        <Button secondary type="submit">
+        <Button secondary type="button">
           delete
         </Button>
-        <Button disabled={form.disabledForm} type="button">
+        <Button disabled={form.disabledForm} type="submit">
           save
         </Button>
       </div>

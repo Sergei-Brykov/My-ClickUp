@@ -2,6 +2,7 @@ import { LocalStorageService } from "./_service";
 import {
   addCurrentTask,
   getCurrentTask,
+  getCurrentTaskAndCutFromColumn,
 } from "../../redux/reducers/transferTaskHelpers";
 
 export class BoardService extends LocalStorageService {
@@ -16,13 +17,19 @@ export class BoardService extends LocalStorageService {
   }
 
   _getCurrentColumn(board, id) {
-    const column = board.columns.find((column) => column.id === id);
+    let index;
+    const column = board.columns.find((column, idx) => {
+      if (column.id === id) {
+        index = idx;
+        return true;
+      }
+    });
 
     if (!column) {
       throw new Error("Ooops something wrong... current column did`t find");
     }
 
-    return column;
+    return [column, { columnIndex: index }];
   }
 
   async createNewColumn(boardId, column) {
@@ -73,9 +80,10 @@ export class BoardService extends LocalStorageService {
 
   async createNewTask(boardId, columnId, task) {
     const board = this._getCurrentBoard(boardId);
-    const currentColumn = this._getCurrentColumn(board, columnId);
+    const [currentColumn] = this._getCurrentColumn(board, columnId);
 
     task.createdAt = Date.now();
+    task.updatedAt = Date.now();
     task.id = this.makeId();
     currentColumn.tasks.push(task);
 
@@ -84,16 +92,28 @@ export class BoardService extends LocalStorageService {
     return board;
   }
 
-  async put(boardId, columnId, newTask) {
+  async put(boardId, columnId, { newTask, changeColumnIndex }) {
     const board = this._getCurrentBoard(boardId);
-    const column = this._getCurrentColumn(board, columnId);
+    const [column, { columnIndex }] = this._getCurrentColumn(board, columnId);
 
-    column.tasks = column.tasks.map((task) => {
+    let taskIndex;
+
+    newTask.updatedAt = Date.now();
+    column.tasks = column.tasks.map((task, idx) => {
       if (task.id === newTask.id) {
+        taskIndex = idx;
         return newTask;
       }
       return task;
     });
+
+    if (changeColumnIndex) {
+      const currentTask = getCurrentTaskAndCutFromColumn(board, {
+        columnIndex,
+        taskIndex,
+      });
+      board.columns[changeColumnIndex].tasks.push(currentTask);
+    }
 
     this._saveBoard(board);
 
@@ -102,7 +122,7 @@ export class BoardService extends LocalStorageService {
 
   async deleteTask(boardId, columnId, taskId) {
     const board = this._getCurrentBoard(boardId);
-    const column = this._getCurrentColumn(board, columnId);
+    const [column] = this._getCurrentColumn(board, columnId);
 
     column.tasks = column.tasks.filter((task) => task.id !== taskId);
 
@@ -113,7 +133,7 @@ export class BoardService extends LocalStorageService {
 
   async transferTask(boardId, { dragged, dropped }) {
     const board = this._getCurrentBoard(boardId);
-    const currentTask = getCurrentTask(board, dragged);
+    const currentTask = getCurrentTaskAndCutFromColumn(board, dragged);
 
     const changedBoard = addCurrentTask(board, currentTask, dropped);
 

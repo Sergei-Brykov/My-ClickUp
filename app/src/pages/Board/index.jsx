@@ -1,12 +1,12 @@
 import styles from "./styles.module.css";
 import { useFetchBoard } from "../../hooks/useFetchBoard";
 import { Column } from "./Column";
-import { FormWrap } from "../../copmponents/FormWrap";
+import { FormWrap } from "../../components/FormWrap";
 import { ColumnForm } from "./ColumnForm";
 import { Wrap } from "./ColumnForm/Wrap";
 import { DragAndDropProvider } from "../../Providers/DragAndDropProvider";
-import { Modal } from "../../copmponents/Modal";
-import { Layout } from "../../copmponents/Layout";
+import { Modal } from "../../components/Modal";
+import { Layout } from "../../components/Layout";
 
 export function BoardPage() {
   const [board, { loading, error }] = useFetchBoard();

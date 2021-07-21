@@ -1,7 +1,7 @@
 import { useContext, useMemo, useRef } from "react";
 import styles from "../styles.module.css";
-import { FormWrap } from "../../../../copmponents/FormWrap";
-import { TaskForm } from "../../TaskForm/TaskForm";
+import { FormWrap } from "../../../../components/FormWrap";
+import { TaskForm } from "../../../Task/TaskForm/TaskForm";
 import cl from "../../../../helpers/classname";
 import { DragAndDropContext } from "../../../../Providers/DragAndDropProvider";
 

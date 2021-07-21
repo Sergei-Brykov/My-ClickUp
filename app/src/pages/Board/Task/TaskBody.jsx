@@ -1,5 +1,5 @@
 import styles from "./styles.module.css";
-import { MainLabel } from "../../../copmponents/Inputs/MainLabel";
+import { MainLabel } from "../../../components/Inputs/MainLabel";
 
 export function TaskBody({ shortDescription, id, openForm }) {
   return (

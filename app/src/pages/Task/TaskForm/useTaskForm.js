@@ -16,10 +16,17 @@ export function useTaskForm(onClose, { task, columnId, columnIndex }) {
   const dispatch = useDispatch();
 
   const formSettings = useMemo(() => {
+    const initData = task || initData;
+
+    if (columnIndex) {
+      initData.location = columnIndex;
+    }
+
     const settings = {
-      initial: task || initData,
+      initial: initData,
       validate(values) {
         const errors = {};
+        console.log(11);
 
         if (values.title.length < 3) {
           errors.title = "Title is to short";
@@ -35,13 +42,13 @@ export function useTaskForm(onClose, { task, columnId, columnIndex }) {
 
     if (task) {
       settings.onSubmit = (values) => {
-        delete values.columnIndex;
-        dispatch(updateTask(boardId, columnId, values));
+        const body = buildUpdateBody(values, columnIndex);
+        dispatch(updateTask(boardId, columnId, body));
         onClose();
       };
     } else {
       settings.onSubmit = (values) => {
-        delete values.columnIndex;
+        delete values.location;
         dispatch(createNewTask(boardId, columnId, values));
         onClose();
       };
@@ -51,8 +58,25 @@ export function useTaskForm(onClose, { task, columnId, columnIndex }) {
   }, [boardId, columnId, columnIndex]);
 
   const form = useForm(formSettings);
-  console.log(form);
+
   return [form, createErrorsArray(form.errors)];
+}
+
+function buildUpdateBody(values, initialIndex) {
+  let changeColumnIndex = null;
+
+  if (values.location && values.location !== initialIndex) {
+    changeColumnIndex = values.location;
+  }
+
+  delete values.location;
+  const body = { newTask: values };
+
+  if (changeColumnIndex) {
+    body.changeColumnIndex = changeColumnIndex;
+  }
+
+  return body;
 }
 
 function createErrorsArray(errors) {

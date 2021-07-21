@@ -7,8 +7,8 @@ import { useCallback, useState } from "react";
 import { BoardForm } from "../BoardForm";
 import { useDispatch } from "react-redux";
 import { deleteBoard } from "../../../redux/asyncActions/board/deleteBoard";
-import { EditButton } from "../../../copmponents/Buttons/EditButton";
-import { DeleterButton } from "../../../copmponents/Buttons/DeleterButton";
+import { EditButton } from "../../../components/Buttons/EditButton";
+import { DeleterButton } from "../../../components/Buttons/DeleterButton";
 
 function useBoardItem(id) {
   const dispatch = useDispatch();

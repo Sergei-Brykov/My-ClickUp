@@ -1,9 +1,9 @@
 import { useContext, useRef } from "react";
 
 import styles from "../styles.module.css";
-import { ChevronButton } from "../../../../copmponents/Buttons/ChevronButtons";
-import { EditButton } from "../../../../copmponents/Buttons/EditButton";
-import { DeleterButton } from "../../../../copmponents/Buttons/DeleterButton";
+import { ChevronButton } from "../../../../components/Buttons/ChevronButtons";
+import { EditButton } from "../../../../components/Buttons/EditButton";
+import { DeleterButton } from "../../../../components/Buttons/DeleterButton";
 import { DragAndDropContext } from "../../../../Providers/DragAndDropProvider";
 import cl from "../../../../helpers/classname";
 

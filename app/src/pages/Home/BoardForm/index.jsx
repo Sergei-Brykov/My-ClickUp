@@ -1,9 +1,9 @@
 import styles from "../styles.module.css";
-import { Button } from "../../../copmponents/Buttons";
+import { Button } from "../../../components/Buttons";
 import cl from "../../../helpers/classname";
-import { ErrorView } from "../../../copmponents/ErrorView";
+import { ErrorView } from "../../../components/ErrorView";
 import { useBoardForm } from "./useBoardForm";
-import { MainInput } from "../../../copmponents/Inputs/MainInput";
+import { MainInput } from "../../../components/Inputs/MainInput";
 
 export function BoardForm({ onClose, board }) {
   const [form, error] = useBoardForm(onClose, board);

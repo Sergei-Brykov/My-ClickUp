@@ -1,14 +1,11 @@
-import {
-  getAllBoardReject,
-  getAllBoardResponse,
-} from "../../reducers/boardsReducer";
+import { getAllBoardRejectCreator } from "../../reducers/boardsReducer";
 
-export async function allBoardsWrapper(dispatch, fun) {
+export async function allBoardsWrapper(actionCreator, dispatch, fun) {
   try {
     const boards = await fun();
-    dispatch(getAllBoardResponse(boards));
+    dispatch(actionCreator(boards));
   } catch (e) {
     // if you browser don`t support localStorage api || http error
-    dispatch(getAllBoardReject(e.message));
+    dispatch(getAllBoardRejectCreator(e.message));
   }
 }

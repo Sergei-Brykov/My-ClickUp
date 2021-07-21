@@ -7,7 +7,7 @@ import { findTaskAndColumnById } from "../../../helpers/findTaskAndColumnById";
 import { LoadingLayout } from "../../../components/LoadingLayout";
 import { ErrorLayout } from "../../../components/ErrorLayout";
 
-export function SingleTaskWrap({}) {
+export function SingleTaskWrap() {
   const [board, { loading, error }] = useFetchBoard();
   const { columnId, taskId } = useParams();
 
@@ -20,9 +20,7 @@ export function SingleTaskWrap({}) {
     taskId,
   });
 
-  if (!task) {
-    return <LoadingLayout />;
-  }
+  if (!task) return <LoadingLayout />;
 
   return (
     <div className={cl(styles.wrap)}>

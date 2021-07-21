@@ -20,7 +20,7 @@ function useForm({ initial, validate, onSubmit: submit }) {
 
   useEffect(() => {
     setIsDisabledForm(isEqual(initial, values));
-  }, [values]);
+  }, [values, initial]);
 
   const onSubmit = useCallback(
     (e) => {

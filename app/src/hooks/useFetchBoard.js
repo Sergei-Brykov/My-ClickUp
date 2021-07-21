@@ -7,9 +7,7 @@ import { cleanBoardCreator } from "../redux/reducers/currentBoardReducer";
 export function useFetchBoard() {
   const { boardId } = useParams();
   const dispatch = useDispatch();
-  const { board, loading, error, isModal } = useSelector(
-    (state) => state.currentBoard
-  );
+  const { board, loading, error } = useSelector((state) => state.currentBoard);
 
   useEffect(() => {
     dispatch(getOneBoard(boardId));
@@ -17,5 +15,5 @@ export function useFetchBoard() {
     return () => dispatch(cleanBoardCreator());
   }, []);
 
-  return [board, { loading, error, boardId, isModal }];
+  return [board, { loading, error, boardId }];
 }

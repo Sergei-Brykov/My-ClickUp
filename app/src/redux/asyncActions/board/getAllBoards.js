@@ -5,7 +5,6 @@ import { allBoardsWrapper } from "./_wrapper";
 export function getAllBoards() {
   return async (dispatch) => {
     await allBoardsWrapper(dispatch, () => {
-      dispatch(getAllBoardRequest());
       return serverApi.mainService.getAllBoards();
     });
   };

@@ -1,5 +1,6 @@
 export function buildUpdateBody(values, initialIndex) {
-  let changeColumnIndex = null;
+  let changeColumnIndex = null,
+    isLocationChange = false;
 
   if (values.location && values.location !== initialIndex) {
     changeColumnIndex = values.location;
@@ -9,10 +10,11 @@ export function buildUpdateBody(values, initialIndex) {
   const body = { newTask: values };
 
   if (changeColumnIndex) {
+    isLocationChange = true;
     body.changeColumnIndex = changeColumnIndex;
   }
 
-  return body;
+  return [body, isLocationChange];
 }
 
 export function createErrorsArray(errors) {

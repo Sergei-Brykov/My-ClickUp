@@ -2,17 +2,12 @@ const initialState = {
   board: null,
   loading: true,
   error: "",
-  isDrag: false,
-  isModal: null,
 };
 
 export const GET_BOARD_REQUEST = "GET_BOARD_REQUEST";
 export const GET_BOARD_RESPONSE = "GET_BOARD_RESPONSE";
 export const GET_BOARD_REJECT = "GET_BOARD_REJECT";
 export const CLEAN_BOARD = "CLEAN_BOARD";
-
-export const OPEN_MODAL = "OPEN_MODAL";
-export const CLOSE_MODAL = "CLOSE_MODAL";
 
 export const currentBoardReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -24,11 +19,6 @@ export const currentBoardReducer = (state = initialState, action) => {
       return { ...state, error: action.data };
     case CLEAN_BOARD:
       return { ...state, board: null };
-
-    case OPEN_MODAL:
-      return { ...state, isModal: action.data };
-    case CLOSE_MODAL:
-      return { ...state, isModal: null };
 
     default:
       return state;
@@ -48,5 +38,3 @@ export const getOneBoardReject = (error) => ({
 });
 
 export const cleanBoardCreator = () => ({ type: CLEAN_BOARD });
-export const openModalCreator = (data) => ({ type: OPEN_MODAL, data });
-export const closeModalCreator = () => ({ type: CLOSE_MODAL });

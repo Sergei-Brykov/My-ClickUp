@@ -2,7 +2,6 @@ const initialState = {
   boards: null,
   loading: true,
   error: "",
-  isModal: null,
 };
 
 export const GET_ALL_BOARDS_REQUEST = "GET_ALL_BOARDS_REQUEST";

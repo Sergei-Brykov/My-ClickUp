@@ -1,5 +1,5 @@
 import useForm from "./useForm";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useMemo } from "react";
 import { createNewTask } from "../redux/asyncActions/tasks/createdNewTask";
@@ -8,6 +8,7 @@ import {
   buildUpdateBody,
   createErrorsArray,
 } from "../pages/Task/TaskForm/helpers";
+import { path } from "../Providers/path";
 
 const init = {
   title: "",
@@ -18,6 +19,7 @@ const init = {
 export function useTaskForm(onClose, { task, columnId, columnIndex }) {
   const { boardId } = useParams();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const formSettings = useMemo(() => {
     const initData = task || init;
@@ -45,9 +47,12 @@ export function useTaskForm(onClose, { task, columnId, columnIndex }) {
 
     if (task) {
       settings.onSubmit = (values) => {
-        const body = buildUpdateBody(values, columnIndex);
+        const [body, isPush] = buildUpdateBody(values, String(columnIndex));
         dispatch(updateTask(boardId, columnId, body));
         onClose();
+        if (isPush) {
+          history.push(path.board(boardId));
+        }
       };
     } else {
       settings.onSubmit = (values) => {
@@ -58,7 +63,7 @@ export function useTaskForm(onClose, { task, columnId, columnIndex }) {
     }
 
     return settings;
-  }, [boardId, columnId, columnIndex]);
+  }, [task, boardId, columnId, columnIndex]);
 
   const form = useForm(formSettings);
 

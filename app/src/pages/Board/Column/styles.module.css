@@ -31,7 +31,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 10px 10px 0 10px;
 }
 .titleWrap{
     display: flex;
@@ -45,7 +45,7 @@
 
 .btnWrap {
     cursor: initial;
-    padding: 8px 5px;
+    padding: 0 5px 8px 5px;
     display: flex;
     justify-content: space-between;
 }
@@ -58,7 +58,7 @@
 }
 
 .count {
-    border: 1px solid black;
+    border: 1px solid rgba(26, 26, 26, 0.8);
     margin-left: 9px;
     border-radius: 10px;
     padding: 0 7px;

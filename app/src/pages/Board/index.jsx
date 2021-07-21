@@ -5,15 +5,16 @@ import { FormWrap } from "../../components/FormWrap";
 import { ColumnForm } from "./ColumnForm";
 import { Wrap } from "./ColumnForm/Wrap";
 import { DragAndDropProvider } from "../../Providers/DragAndDropProvider";
-import { Modal } from "../../components/Modal";
 import { Layout } from "../../components/Layout";
+import { ErrorLayout } from "../../components/ErrorLayout";
+import { LoadingLayout } from "../../components/LoadingLayout";
 
 export function BoardPage() {
   const [board, { loading, error }] = useFetchBoard();
 
-  if (error) return <>{error}</>;
-  if (loading) return <>loading</>;
-  if (!board) return <>Sorry you link invalid</>;
+  if (error) return <ErrorLayout error={error} />;
+  if (loading) return <LoadingLayout />;
+  if (!board) return <ErrorLayout error={"Sorry you have invalid link"} />;
 
   return (
     <Layout board={board}>

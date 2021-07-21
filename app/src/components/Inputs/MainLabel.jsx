@@ -7,10 +7,15 @@ export function MainLabel({
   htmlFor,
   size: fontSize = "",
   mt = false,
+  style = {},
 }) {
   return (
     <div className={cl(mt && "mt-2")}>
-      <label style={{ fontSize }} htmlFor={htmlFor} className={styles.label}>
+      <label
+        style={{ ...style, fontSize }}
+        htmlFor={htmlFor}
+        className={styles.label}
+      >
         {title || children}
       </label>
     </div>

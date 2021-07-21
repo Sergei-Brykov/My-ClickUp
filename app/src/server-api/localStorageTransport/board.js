@@ -5,7 +5,7 @@ import {
   getCurrentTaskAndCutFromColumn,
 } from "../../redux/reducers/transferTaskHelpers";
 
-export class BoardService extends LocalStorageService {
+export class BoardTransport extends LocalStorageService {
   _getCurrentBoard(id) {
     const board = JSON.parse(localStorage.getItem(`board-${id}`));
 

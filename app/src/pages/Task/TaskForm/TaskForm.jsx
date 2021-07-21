@@ -17,17 +17,18 @@ export function TaskForm({ onClose, context }) {
           autoFocus
           onChange={form.onChange("title")}
           value={form.values.title}
-          placeholder={"Task title"}
+          placeholder={"TaskInBoard title"}
           style={{ paddingLeft: 4 }}
         />
-        <MainLabel mt>Task description: </MainLabel>
 
+        <MainLabel mt>Task description: </MainLabel>
         <MainTextarea
           value={form.values.shortDescription}
           onChange={form.onChange("shortDescription")}
           placeholder="Short description"
           style={{ paddingLeft: 4 }}
         />
+
         <div className={styles.btnWrap}>
           <Button type="submit" disabled={form.disabledForm}>
             save

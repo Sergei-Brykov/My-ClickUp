@@ -16,8 +16,16 @@
     text-transform: initial;
 }
 
-.copyInput{
+.copyInput {
 
+}
+
+.linkInput {
+    font-size: 14px;
+    text-decoration: underline;
+    color: #acaac4;
+    flex-grow: 1;
+    cursor: not-allowed;
 }
 
 .btnwrap {

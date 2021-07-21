@@ -24,7 +24,6 @@ export function SingleTask({ task, board, column, onClose }) {
   });
 
   if (!task) return null;
-  console.log(form);
 
   return (
     <form className={styles.container} onSubmit={form.onSubmit}>
@@ -32,7 +31,11 @@ export function SingleTask({ task, board, column, onClose }) {
 
       <div className={styles.columnswrap}>
         <div className={styles.column}>
-          <MainLabel title={"Task title: "} size={24} htmlFor={"task-title"} />
+          <MainLabel
+            title={"TaskInBoard title: "}
+            size={24}
+            htmlFor={"task-title"}
+          />
           <MainInput
             id={"task-title"}
             value={form.values.title}
@@ -65,6 +68,12 @@ export function SingleTask({ task, board, column, onClose }) {
         value={form.values.shortDescription}
         onChange={form.onChange("shortDescription")}
       />
+      {form.errors.shortDescription && (
+        <ErrorView
+          key={form.errors.shortDescription}
+          error={form.errors.shortDescription}
+        />
+      )}
       <MainLabel
         size={24}
         htmlFor={"task-title"}

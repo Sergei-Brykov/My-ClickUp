@@ -5,7 +5,7 @@ import { useMemo } from "react";
 import { createNewTask } from "../../../redux/asyncActions/tasks/createdNewTask";
 import { updateTask } from "../../../redux/asyncActions/tasks/updateTask";
 
-const initData = {
+const init = {
   title: "",
   shortDescription: "",
   description: "",
@@ -16,17 +16,16 @@ export function useTaskForm(onClose, { task, columnId, columnIndex }) {
   const dispatch = useDispatch();
 
   const formSettings = useMemo(() => {
-    const initData = task || initData;
+    const initData = task || init;
 
-    if (columnIndex) {
-      initData.location = columnIndex;
+    if (columnIndex?.toString()) {
+      initData.location = columnIndex.toString();
     }
 
     const settings = {
       initial: initData,
       validate(values) {
         const errors = {};
-        console.log(11);
 
         if (values.title.length < 3) {
           errors.title = "Title is to short";

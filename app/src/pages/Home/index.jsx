@@ -4,12 +4,14 @@ import { FormWrap } from "../../components/FormWrap";
 import { BoardList } from "./BoardList";
 import { useFetchAllBoards } from "../../hooks/useFetchAllBoards";
 import { Layout } from "../../components/Layout";
+import { ErrorLayout } from "../../components/ErrorLayout";
+import { LoadingLayout } from "../../components/LoadingLayout";
 
 export function HomePage() {
   const [boards, { loading, error }] = useFetchAllBoards();
 
-  if (error) return <>{error}</>;
-  if (loading) return <>...loading</>;
+  if (error) return <ErrorLayout error={error} />;
+  if (loading) return <LoadingLayout />;
 
   return (
     <Layout>

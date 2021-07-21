@@ -59,3 +59,18 @@
 .secondary:hover {
     background: #c10e29;
 }
+
+.checked {
+    border-radius: 50%;
+    padding: 2px;
+    transition: 0.3s;
+    transform: rotate(0);
+    cursor: initial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.closebtn:hover {
+    transform: rotate(20deg);
+}

@@ -1,19 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
 import { isEqual } from "../helpers/isEqual";
 
-function useForm({
-  initial,
-  clearError = () => {},
-  validate,
-  onSubmit: submit,
-  clearAfterValidation = false,
-}) {
+function useForm({ initial, validate, onSubmit: submit }) {
   const [values, setValues] = useState(initial);
   const [errors, setErrors] = useState({});
   const [disabledForm, setIsDisabledForm] = useState(true);
 
   const customChange = useCallback((name, value) => {
-    clearError();
     setErrors({});
     setValues((prev) => ({ ...prev, [name]: value }));
   }, []);
@@ -39,9 +32,6 @@ function useForm({
       if (Object.keys(errors).length) {
         setIsDisabledForm(true);
         setErrors(errors);
-        if (clearAfterValidation) {
-          setValues(initial);
-        }
         return;
       }
 

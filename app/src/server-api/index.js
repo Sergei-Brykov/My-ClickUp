@@ -1,5 +1,5 @@
-import { MainService } from "./localStorageServices/main";
-import { BoardService } from "./localStorageServices/board";
+import { MainService } from "./localStorageTransport/main";
+import { BoardTransport } from "./localStorageTransport/board";
 
 class ServerApi {
   constructor(mainService, boardService) {
@@ -8,4 +8,4 @@ class ServerApi {
   }
 }
 
-export const serverApi = new ServerApi(new MainService(), new BoardService());
+export const serverApi = new ServerApi(new MainService(), new BoardTransport());

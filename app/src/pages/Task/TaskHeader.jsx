@@ -4,10 +4,11 @@ import cl from "../../helpers/classname";
 import { MainLabel } from "../../components/Inputs/MainLabel";
 import { MainInput } from "../../components/Inputs/MainInput";
 import { path } from "../../Providers/path";
-import { useCallback, useRef } from "react";
+import { useRef } from "react";
 
 import { normalizeTime } from "../../helpers/normalizeTime";
 import { CopyButton } from "../../components/Buttons/CopyButton";
+import { useCopyToClipboard } from "../../hooks/useCopyToClipboard";
 
 function buildBreadCrumsData(board, column) {
   return [
@@ -25,9 +26,9 @@ function buildCreatedAtData(task) {
 
 export function TaskHeader({ task, column, board }) {
   const link = window.origin + path.task(board.id, column.id, task.id);
-  const ref = useRef(null);
 
-  const copyHandler = useCopyToClipboard(ref);
+  const ref = useRef(null);
+  const [copyHandler] = useCopyToClipboard(ref);
 
   return (
     <>
@@ -43,10 +44,19 @@ export function TaskHeader({ task, column, board }) {
           <BreadCrums items={buildCreatedAtData(task)} />
         </div>
       </div>
-      <div className={cl(styles.link, "mt-2", "mb-2")}>
+      <div className={cl("mt-2", "mb-2")}>
         <div className={styles.copyInput}>
-          <MainLabel title={"Task link: "} size={24} htmlFor={"task-title"} />
-          <MainInput inputRef={ref} readOnly value={link} />
+          <MainLabel
+            title={"TaskInBoard link: "}
+            size={24}
+            htmlFor={"task-title"}
+          />
+          <MainInput
+            className={styles.linkInput}
+            inputRef={ref}
+            readOnly
+            value={link}
+          />
         </div>
         <div className={styles.column}>
           <CopyButton onClick={() => copyHandler(link)} />
@@ -55,26 +65,3 @@ export function TaskHeader({ task, column, board }) {
     </>
   );
 }
-
-function useCopyToClipboard(ref) {
-  const copyToClipboard = useCallback((content) => {
-    try {
-      navigator.clipboard
-        .writeText(content)
-        .then(() => console.log("Successfully copied"))
-        .catch(() =>
-          alert(`Error occured: please do this manually - "${content}"`)
-        );
-    } catch (err) {}
-  }, []);
-
-  return useCallback(
-    (content) => {
-      copyToClipboard(content);
-      ref.current.select();
-    },
-    [ref]
-  );
-}
-
-export default useCopyToClipboard;

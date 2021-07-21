@@ -1,4 +1,4 @@
-import { Task } from "../../Task";
+import { Task } from "../../../Task/TaskInBoard";
 
 export function ColumnBodyWrap({ column, columnIndex }) {
   return column.tasks.map((task, taskIndex) => (

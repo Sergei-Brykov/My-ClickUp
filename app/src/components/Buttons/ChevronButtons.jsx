@@ -1,5 +1,4 @@
 import { IconButton } from "./IconButton";
-import Icon from "@iconify/react";
 import chevronLeft from "@iconify-icons/mdi-light/chevron-left";
 import chevronRight from "@iconify-icons/mdi-light/chevron-right";
 
@@ -10,8 +9,10 @@ const chevrons = {
 
 export function ChevronButton({ onClick, leftExtreme = false, direction }) {
   return (
-    <IconButton isLeft={leftExtreme} onClick={onClick}>
-      <Icon icon={chevrons[direction]} />
-    </IconButton>
+    <IconButton
+      icon={chevrons[direction]}
+      isLeft={leftExtreme}
+      onClick={onClick}
+    />
   );
 }

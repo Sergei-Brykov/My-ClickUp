@@ -2,8 +2,8 @@ export const path = {
   home: () => "/",
   board: (boardId) => `/board/${boardId ? boardId : ":id"}`,
   task: (boardId, columnId, taskId) =>
-    `/task/${boardId ? boardId : ":boardId"}/${
+    `/board/${boardId ? boardId : ":boardId"}/column/${
       columnId ? columnId : ":columnId"
-    }/${taskId ? taskId : ":taskId"}`,
+    }/task/${taskId ? taskId : ":taskId"}`,
   error: () => "/error",
 };

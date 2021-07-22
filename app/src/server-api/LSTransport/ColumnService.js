@@ -2,7 +2,7 @@ export class ColumnService {
   constructor(db) {
     this.db = db;
   }
-
+  //I have used asynchronous functions for compatibility with server-side requests
   async createNewColumn(boardId, column) {
     const board = this.db.getOneBoard(boardId);
     column.id = this.db.makeId();

@@ -2,7 +2,7 @@ export class BoardService {
   constructor(db) {
     this.db = db;
   }
-
+  //I have used asynchronous functions for compatibility with server-side requests
   async getAllBoards() {
     return this.db.getAllBoards();
   }

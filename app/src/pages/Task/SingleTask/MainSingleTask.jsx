@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 import { findTaskAndColumnByTaskId } from "../../../helpers/findTaskAndColumnById";
 import { LoadingLayout } from "../../../components/LoadingLayout";
 import { ErrorLayout } from "../../../components/ErrorLayout";
-import { useMemo } from "react";
 
 export function MainSingleTask() {
   const [board, { loading, error }] = useFetchBoard();
@@ -20,14 +19,11 @@ export function MainSingleTask() {
 
 function SingleTaskWrap({ board }) {
   const { taskId } = useParams();
-
-  const [column, task] = useMemo(
-    () => findTaskAndColumnByTaskId(board, taskId),
-    [board, taskId]
-  );
+  // don`t use useMemo!!!
+  const [column, task] = findTaskAndColumnByTaskId(board, taskId);
 
   if (!task) return <ErrorLayout error="This task deleted" />;
-  console.log(task, column);
+
   return (
     <div className={cl(styles.wrap)}>
       <SingleTask

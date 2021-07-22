@@ -47,12 +47,9 @@ export function useTaskForm(onClose, { task, columnId, columnIndex }) {
 
     if (task) {
       settings.onSubmit = (values) => {
-        const [body, isPush] = buildUpdateBody(values, String(columnIndex));
+        const body = buildUpdateBody(values, String(columnIndex));
         dispatch(updateTask(boardId, columnId, body));
         onClose();
-        if (isPush) {
-          history.push(path.board(boardId));
-        }
       };
     } else {
       settings.onSubmit = (values) => {

@@ -1,9 +1,9 @@
 import { useMemo } from "react";
+
 import useForm from "../../../hooks/useForm";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { createNewColumn } from "../../../redux/asyncActions/columns/createNewColumn";
-import { updateBoard } from "../../../redux/asyncActions/board/updateBoard";
 import { updateColumn } from "../../../redux/asyncActions/columns/updateColumn";
 
 const init = {

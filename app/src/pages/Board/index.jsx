@@ -14,7 +14,7 @@ export function BoardPage() {
 
   if (error) return <ErrorLayout error={error} />;
   if (loading) return <LoadingLayout />;
-  if (!board) return <ErrorLayout error={"Sorry you have invalid link"} />;
+  if (!board) return <></>;
 
   return (
     <div className={styles.container}>

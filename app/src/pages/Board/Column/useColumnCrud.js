@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useCallback, useState } from "react";
 import { deleteColumn } from "../../../redux/asyncActions/columns/deleteColumn";
 import { transferColumn } from "../../../redux/asyncActions/columns/transferColumn";
+import { updateColumn } from "../../../redux/asyncActions/columns/updateColumn";
 
 export function useColumnCrud({ column, columnIndex }) {
   const { boardId } = useParams();
@@ -15,7 +16,7 @@ export function useColumnCrud({ column, columnIndex }) {
   );
 
   const onUpdate = useCallback(
-    () => dispatch(deleteColumn(boardId, column)),
+    () => dispatch(updateColumn(boardId, column)),
     [column]
   );
 
@@ -23,7 +24,7 @@ export function useColumnCrud({ column, columnIndex }) {
     (offset) => () => {
       dispatch(transferColumn(boardId, column.id, columnIndex, offset));
     },
-    [column]
+    [column, columnIndex]
   );
 
   return {

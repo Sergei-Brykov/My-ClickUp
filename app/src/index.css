@@ -128,7 +128,17 @@ code {
     transition: 0.2s;
 }
 
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.main-h2 {
+    font-size: 36px;
+    color: #7c8185;
+
+}
 
 .pointer-events *:not(div[draggable]) {
     pointer-events: none;

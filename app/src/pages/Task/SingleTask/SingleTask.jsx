@@ -9,10 +9,9 @@ export function SingleTask({
   task,
   board,
   column,
-  onClose = () => alert("task save"),
+  onClose = () => alert("TASK SUCCESSFULLY SAVED"),
 }) {
   const [deleteTaskHandler] = useTaskHandle(task.id, column, onClose);
-
   const [form] = useTaskForm(onClose, {
     task,
     columnId: column.id,

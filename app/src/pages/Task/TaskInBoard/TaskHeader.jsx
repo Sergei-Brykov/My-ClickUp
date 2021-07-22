@@ -1,5 +1,5 @@
-import { MainLabel } from "../../../components/Inputs/MainLabel";
 import styles from "./styles.module.css";
+import { MainLabel } from "../../../components/Inputs/MainLabel";
 import { EditButton } from "../../../components/Buttons/EditButton";
 import { DeleterButton } from "../../../components/Buttons/DeleterButton";
 import { FullScreenButton } from "../../../components/Buttons/FullScreenButton";

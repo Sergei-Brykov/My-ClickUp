@@ -48,9 +48,11 @@ export function ColumnHeader({
               <span className={styles.spanTitle}>{title}</span>
               <div className={styles.count}>{tasks.length}</div>
             </div>
-            <div style={{ color }} className={styles.plus}>
-              +
-            </div>
+            <div
+              onClick={openForm}
+              style={{ background: color }}
+              className={styles.plus}
+            />
           </div>
 
           <div className={styles.btnWrap}>

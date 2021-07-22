@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
-import { path } from "../../../Providers/path";
+import { useDispatch } from "react-redux";
+import { useCallback, useState } from "react";
+
 import cl from "../../../helpers/classname";
 import styles from "../styles.module.css";
 import { normalizeTime } from "../../../helpers/normalizeTime";
-import { useCallback, useState } from "react";
+import { path } from "../../../Providers/path";
 import { BoardForm } from "../BoardForm";
-import { useDispatch } from "react-redux";
 import { deleteBoard } from "../../../redux/asyncActions/board/deleteBoard";
 import { EditButton } from "../../../components/Buttons/EditButton";
 import { DeleterButton } from "../../../components/Buttons/DeleterButton";

@@ -1,12 +1,12 @@
 import { useRef } from "react";
-import styles from "./styles.module.css";
-import { BreadCrums } from "../../../components/BreadCrums";
 import cl from "../../../helpers/classname";
-import { MainLabel } from "../../../components/Inputs/MainLabel";
+import styles from "./styles.module.css";
 import { path } from "../../../Providers/path";
+import { ViewLink } from "./ViewLink";
+import { BreadCrums } from "../../../components/BreadCrums";
+import { MainLabel } from "../../../components/Inputs/MainLabel";
 import { normalizeTime } from "../../../helpers/normalizeTime";
 import { useCopyToClipboard } from "../../../hooks/useCopyToClipboard";
-import { ViewLink } from "./ViewLink";
 
 function buildBreadCrumsData(board, column) {
   return [

@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import styles from "./styles.module.css";
-import { Fragment } from "react";
 
 export function FormWrap({ wrap: Wrap = Fragment, text, children }) {
   const [isActive, setIsActive] = useState(false);

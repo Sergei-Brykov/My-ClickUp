@@ -19,7 +19,6 @@ const init = {
 export function useTaskForm(onClose, { task, columnId, columnIndex }) {
   const { boardId } = useParams();
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const formSettings = useMemo(() => {
     const initData = task || init;

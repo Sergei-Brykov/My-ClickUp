@@ -1,6 +1,6 @@
+import cl from "../../../helpers/classname";
 import styles from "../styles.module.css";
 import { Button } from "../../../components/Buttons";
-import cl from "../../../helpers/classname";
 import { ErrorView } from "../../../components/ErrorView";
 import { useBoardForm } from "./useBoardForm";
 import { MainInput } from "../../../components/Inputs/MainInput";

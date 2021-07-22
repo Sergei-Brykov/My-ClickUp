@@ -11,3 +11,18 @@ export function findColumnById(board, columnId) {
 export function findTaskById(column, taskId) {
   return column?.tasks.find((task) => task.id === taskId);
 }
+
+export function findTaskAndColumnByTaskId(board, taskId) {
+  let task;
+
+  let column = board.columns.find((column) => {
+    return column.tasks.find((tmpTask) => {
+      if (tmpTask.id === taskId) {
+        task = tmpTask;
+        return true;
+      }
+    });
+  });
+
+  return [column, task];
+}

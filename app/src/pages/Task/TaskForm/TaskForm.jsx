@@ -17,7 +17,7 @@ export function TaskForm({ onClose, context }) {
           autoFocus
           onChange={form.onChange("title")}
           value={form.values.title}
-          placeholder={"TaskInBoard title"}
+          placeholder={"Task title"}
           style={{ paddingLeft: 4 }}
         />
 

@@ -6,6 +6,11 @@
     border-radius: 8px;
 }
 
+.mainTittle {
+    /*padding-left: 6px;*/
+    text-align: center;
+}
+
 .addBoardForm {
     width: 100%;
     display: flex;
@@ -41,7 +46,7 @@
     width: 200px;
     height: 100%;
     line-height: 50px;
-    padding-left: 8px;
+    padding-left: 15px;
 }
 
 .settings {
@@ -54,6 +59,7 @@
     align-items: center;
     justify-content: flex-end;
     padding-left: 8px;
+    width: 88px;
 }
 
 .border {
@@ -63,6 +69,8 @@
 .boardTitle {
     flex-grow: 1;
     padding-left: 8px;
+    text-transform: uppercase;
+    box-sizing: border-box;
 }
 
 .error {

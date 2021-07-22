@@ -1,9 +1,9 @@
+import { useRef } from "react";
 import styles from "./styles.module.css";
 import { BreadCrums } from "../../../components/BreadCrums";
 import cl from "../../../helpers/classname";
 import { MainLabel } from "../../../components/Inputs/MainLabel";
 import { path } from "../../../Providers/path";
-import { useRef } from "react";
 import { normalizeTime } from "../../../helpers/normalizeTime";
 import { useCopyToClipboard } from "../../../hooks/useCopyToClipboard";
 import { ViewLink } from "./ViewLink";
@@ -23,7 +23,7 @@ function buildCreatedAtData(task) {
 }
 
 export function TaskHeader({ task, column, board }) {
-  const taskPath = path.task(board.id, column.id, task.id);
+  const taskPath = path.task(board.id, task.id);
   const link = window.origin + taskPath;
 
   const ref = useRef(null);

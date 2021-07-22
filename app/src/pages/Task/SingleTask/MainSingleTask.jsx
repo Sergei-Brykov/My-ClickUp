@@ -3,32 +3,38 @@ import { useFetchBoard } from "../../../hooks/useFetchBoard";
 import cl from "../../../helpers/classname";
 import { SingleTask } from "./SingleTask";
 import { useParams } from "react-router-dom";
-import { findTaskAndColumnById } from "../../../helpers/findTaskAndColumnById";
+import { findTaskAndColumnByTaskId } from "../../../helpers/findTaskAndColumnById";
 import { LoadingLayout } from "../../../components/LoadingLayout";
 import { ErrorLayout } from "../../../components/ErrorLayout";
+import { useMemo } from "react";
 
-export function SingleTaskWrap() {
+export function MainSingleTask() {
   const [board, { loading, error }] = useFetchBoard();
-  const { columnId, taskId } = useParams();
 
   if (loading) return <LoadingLayout />;
   if (error) return <ErrorLayout error={error} />;
-  if (!board) return <ErrorLayout error={"yo"} />;
+  if (!board) return <ErrorLayout error="This board din`t find" />;
 
-  const [column, task] = findTaskAndColumnById(board, {
-    columnId,
-    taskId,
-  });
+  return <SingleTaskWrap board={board} />;
+}
 
-  if (!task) return <LoadingLayout />;
+function SingleTaskWrap({ board }) {
+  const { taskId } = useParams();
 
+  const [column, task] = useMemo(
+    () => findTaskAndColumnByTaskId(board, taskId),
+    [board, taskId]
+  );
+
+  if (!task) return <ErrorLayout error="This task deleted" />;
+  console.log(task, column);
   return (
     <div className={cl(styles.wrap)}>
       <SingleTask
         board={board}
         column={column}
         task={task}
-        columnId={columnId}
+        columnId={column.id}
         taskId={taskId}
       />
     </div>

@@ -1,7 +1,7 @@
 import { path } from "../Providers/path";
 import { HomePage } from "./Home";
 import { BoardPage } from "./Board";
-import { SingleTaskWrap } from "./Task/SingleTask/SingleTaskWrap";
+import { MainSingleTask } from "./Task/SingleTask/MainSingleTask";
 
 export const routes = [
   {
@@ -17,6 +17,6 @@ export const routes = [
   {
     path: path.task(),
     exact: true,
-    component: SingleTaskWrap,
+    component: MainSingleTask,
   },
 ];

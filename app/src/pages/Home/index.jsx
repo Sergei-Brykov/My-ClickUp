@@ -14,7 +14,7 @@ export function HomePage() {
 
   return (
     <div className={styles.container}>
-      <h2>Project List:</h2>
+      <h2 className={styles.mainTittle}>Project List:</h2>
       <BoardList boards={boards} />
       <FormWrap text="New Project">
         {({ onClose }) => <BoardForm onClose={onClose} />}

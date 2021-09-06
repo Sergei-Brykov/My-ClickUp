@@ -1,5 +1,9 @@
-import { MainRoutes } from "./Providers/MainRoutes";
-import { Layout } from "./components/Layout";
+import { MainRoutes } from './Providers/MainRoutes';
+import { Layout } from './components/Layout';
+import { provider } from 'react-ioc';
+import { BoardsInstance } from './mobx/BoardsInstance';
+import { BoardInstance } from './mobx/BoardInstance';
+import { ModalInstance } from './mobx/ModalInstance';
 
 function App() {
   return (
@@ -9,4 +13,4 @@ function App() {
   );
 }
 
-export default App;
+export default provider(BoardsInstance, BoardInstance, ModalInstance)(App);

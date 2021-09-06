@@ -1,24 +1,19 @@
-import useForm from "./useForm";
-import { useParams, useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useMemo } from "react";
-import { createNewTask } from "../redux/asyncActions/tasks/createdNewTask";
-import { updateTask } from "../redux/asyncActions/tasks/updateTask";
-import {
-  buildUpdateBody,
-  createErrorsArray,
-} from "../pages/Task/TaskForm/helpers";
-import { path } from "../Providers/path";
+import useForm from './useForm';
+import { useParams } from 'react-router-dom';
+import { useMemo } from 'react';
+import { buildUpdateBody, createErrorsArray } from '../pages/Task/TaskForm/helpers';
+import { useInstance } from 'react-ioc';
+import { BoardInstance } from '../mobx/BoardInstance';
 
 const init = {
-  title: "",
-  shortDescription: "",
-  description: "",
+  title: '',
+  shortDescription: '',
+  description: '',
 };
 
 export function useTaskForm(onClose, { task, columnId, columnIndex }) {
   const { boardId } = useParams();
-  const dispatch = useDispatch();
+  const boardInstance = useInstance(BoardInstance);
 
   const formSettings = useMemo(() => {
     const initData = task || init;
@@ -33,11 +28,11 @@ export function useTaskForm(onClose, { task, columnId, columnIndex }) {
         const errors = {};
 
         if (values.title.length < 3) {
-          errors.title = "Title is to short";
+          errors.title = 'Title is to short';
         }
 
         if (values.shortDescription.length < 10) {
-          errors.shortDescription = "Description is to short";
+          errors.shortDescription = 'Description is to short';
         }
 
         return errors;
@@ -47,13 +42,13 @@ export function useTaskForm(onClose, { task, columnId, columnIndex }) {
     if (task) {
       settings.onSubmit = (values) => {
         const body = buildUpdateBody(values, String(columnIndex));
-        dispatch(updateTask(boardId, columnId, body));
+        boardInstance.updateTask(boardId, columnId, body);
         onClose();
       };
     } else {
       settings.onSubmit = (values) => {
         delete values.location;
-        dispatch(createNewTask(boardId, columnId, values));
+        boardInstance.createNewTask(boardId, columnId, values);
         onClose();
       };
     }

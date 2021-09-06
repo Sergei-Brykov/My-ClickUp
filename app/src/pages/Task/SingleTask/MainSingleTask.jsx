@@ -1,13 +1,16 @@
-import styles from "./styles.module.css";
-import { useFetchBoard } from "../../../hooks/useFetchBoard";
-import cl from "../../../helpers/classname";
-import { SingleTask } from "./SingleTask";
-import { useParams } from "react-router-dom";
-import { findTaskAndColumnByTaskId } from "../../../helpers/findTaskAndColumnById";
-import { LoadingLayout } from "../../../components/LoadingLayout";
-import { ErrorLayout } from "../../../components/ErrorLayout";
+import styles from './styles.module.css';
+import { useFetchBoard } from '../../../hooks/useFetchBoard';
+import cl from '../../../helpers/classname';
+import { SingleTask } from './SingleTask';
+import { useParams } from 'react-router-dom';
+import { findTaskAndColumnByTaskId } from '../../../helpers/findTaskAndColumnById';
+import { LoadingLayout } from '../../../components/LoadingLayout';
+import { ErrorLayout } from '../../../components/ErrorLayout';
+import { observer } from 'mobx-react';
 
-export function MainSingleTask() {
+export const MainSingleTask = observer(_MainSingleTask);
+
+function _MainSingleTask() {
   const [board, { loading, error }] = useFetchBoard();
 
   if (loading) return <LoadingLayout />;
@@ -26,13 +29,7 @@ function SingleTaskWrap({ board }) {
 
   return (
     <div className={cl(styles.wrap)}>
-      <SingleTask
-        board={board}
-        column={column}
-        task={task}
-        columnId={column.id}
-        taskId={taskId}
-      />
+      <SingleTask board={board} column={column} task={task} columnId={column.id} taskId={taskId} />
     </div>
   );
 }

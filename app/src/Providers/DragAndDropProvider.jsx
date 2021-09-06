@@ -1,20 +1,21 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { throttle } from "../helpers/throttle";
-import { isEqual } from "../helpers/isEqual";
-import { useParams } from "react-router-dom";
-import { transferTask } from "../redux/asyncActions/tasks/transferTask";
+import React, { useState } from 'react';
+import { useInstance } from 'react-ioc';
+import { throttle } from '../helpers/throttle';
+import { isEqual } from '../helpers/isEqual';
+import { useParams } from 'react-router-dom';
+import { transferTask } from '../redux/asyncActions/tasks/transferTask';
+import { BoardInstance } from '../mobx/BoardInstance';
 
 export const DragAndDropContext = React.createContext();
 
 export const DragAndDropProvider = ({ children, board }) => {
+  const boardInstance = useInstance(BoardInstance);
   const [isDragAndDrop, setIsDragAndDrop] = useState(false);
 
   const [dragged, setDragged] = useState(null);
   const [dropped, setDropped] = useState(null);
 
   const { boardId } = useParams();
-  const dispatch = useDispatch();
 
   const onDragStart = (newDragged) => {
     setIsDragAndDrop(true);
@@ -27,7 +28,7 @@ export const DragAndDropProvider = ({ children, board }) => {
       return;
     }
     setDropped(newDropped);
-    div && div.classList.add("drop");
+    div && div.classList.add('drop');
   });
 
   const onDragOverColumn = throttle((e, columnIndex, context, div) => {
@@ -37,17 +38,17 @@ export const DragAndDropProvider = ({ children, board }) => {
       return;
     }
     setDropped(newDropped);
-    div && div.classList.add("drop");
+    div && div.classList.add('drop');
   });
 
   const onDragLeave = (e, div) => {
-    div.classList.remove("drop");
+    div.classList.remove('drop');
   };
 
   const onDragEnd = () => {
     setIsDragAndDrop(false);
     if (!dragged || !dropped) return;
-    dispatch(transferTask(boardId, { dragged, dropped }));
+    boardInstance.transferTask(boardId, { dragged, dropped });
     setDropped(null);
   };
 
@@ -69,7 +70,7 @@ export const DragAndDropProvider = ({ children, board }) => {
 
 const buildNewDragged = (context, board, columnIndex) => {
   let taskIndex;
-  if (context === "top") {
+  if (context === 'top') {
     taskIndex = 0;
   } else {
     taskIndex = board.columns[columnIndex].tasks.length;

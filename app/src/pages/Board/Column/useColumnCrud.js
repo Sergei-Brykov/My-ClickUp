@@ -1,29 +1,22 @@
-import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useCallback, useState } from "react";
-import { deleteColumn } from "../../../redux/asyncActions/columns/deleteColumn";
-import { transferColumn } from "../../../redux/asyncActions/columns/transferColumn";
-import { updateColumn } from "../../../redux/asyncActions/columns/updateColumn";
+import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useCallback, useState } from 'react';
+import { deleteColumn } from '../../../redux/asyncActions/columns/deleteColumn';
+import { transferColumn } from '../../../redux/asyncActions/columns/transferColumn';
+import { updateColumn } from '../../../redux/asyncActions/columns/updateColumn';
+import { useInstance } from 'react-ioc';
+import { BoardInstance } from '../../../mobx/BoardInstance';
 
 export function useColumnCrud({ column, columnIndex }) {
   const { boardId } = useParams();
-  const dispatch = useDispatch();
   const [isFormOpen, setFormOpen] = useState(false);
+  const boardInstance = useInstance(BoardInstance);
 
-  const onDelete = useCallback(
-    () => dispatch(deleteColumn(boardId, column.id)),
-    [column]
-  );
-
-  const onUpdate = useCallback(
-    () => dispatch(updateColumn(boardId, column)),
-    [column]
-  );
+  const onDelete = useCallback(() => boardInstance.removeColumn(boardId, column.id), [column]);
+  const onUpdate = useCallback(() => boardInstance.updateColumn(boardId, column), [column]);
 
   const onTransfer = useCallback(
-    (offset) => () => {
-      dispatch(transferColumn(boardId, column.id, columnIndex, offset));
-    },
+    (offset) => () => boardInstance.transferColumn(boardId, column.id, columnIndex, offset),
     [column, columnIndex]
   );
 

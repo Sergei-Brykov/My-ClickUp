@@ -1,5 +1,5 @@
-import { BoardListHeader } from "./BoardListHeader";
-import { BoardItem } from "./BoardItem";
+import { BoardListHeader } from './BoardListHeader';
+import { BoardItem } from './BoardItem';
 
 export function BoardList({ boards }) {
   return (

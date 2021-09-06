@@ -1,8 +1,8 @@
-import cl from "../../../helpers/classname";
-import styles from "./styles.module.css";
-import { TaskHeader } from "./TaskHeader";
-import { TaskBody } from "./TaskBody";
-import { useDragAndDropItem } from "../../../hooks/useDragAndDrop";
+import cl from '../../../helpers/classname';
+import styles from './styles.module.css';
+import { TaskHeader } from './TaskHeader';
+import { TaskBody } from './TaskBody';
+import { useDragAndDropItem } from '../../../hooks/useDragAndDrop';
 
 export function TaskView({ task, column, openForm, taskIndex, columnIndex }) {
   const { ref, classes, actions } = useDragAndDropItem(columnIndex, taskIndex);

@@ -1,9 +1,9 @@
-import cl from "../../../helpers/classname";
-import styles from "../styles.module.css";
-import { Button } from "../../../components/Buttons";
-import { ErrorView } from "../../../components/ErrorView";
-import { useBoardForm } from "./useBoardForm";
-import { MainInput } from "../../../components/Inputs/MainInput";
+import cl from '../../../helpers/classname';
+import styles from '../styles.module.css';
+import { Button } from '../../../components/Buttons';
+import { ErrorView } from '../../../components/ErrorView';
+import { useBoardForm } from './useBoardForm';
+import { MainInput } from '../../../components/Inputs/MainInput';
 
 export function BoardForm({ onClose, board }) {
   const [form, error] = useBoardForm(onClose, board);
@@ -20,11 +20,11 @@ export function BoardForm({ onClose, board }) {
           autoFocus
           className={styles.input}
           placeholder="Project name"
-          onChange={form.onChange("title")}
+          onChange={form.onChange('title')}
           value={form.values.title}
         />
 
-        <Button type={"submit"} className="mr-2" disabled={form.disabledForm}>
+        <Button type={'submit'} className="mr-2" disabled={form.disabledForm}>
           save
         </Button>
         <Button secondary className="mr-2" onClick={onClose}>

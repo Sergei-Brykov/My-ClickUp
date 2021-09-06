@@ -12,6 +12,7 @@ export class BoardService {
   }
 
   async createNewBoard(board) {
+    console.log(344, board);
     const boards = this.db.getAllBoards();
     board.id = this.db.makeId();
     boards.push(board);

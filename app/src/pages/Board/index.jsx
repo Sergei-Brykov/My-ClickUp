@@ -1,15 +1,18 @@
-import styles from "./styles.module.css";
-import { useFetchBoard } from "../../hooks/useFetchBoard";
-import { Column } from "./Column";
-import { FormWrap } from "../../components/FormWrap";
-import { ColumnForm } from "./ColumnForm";
-import { Wrap } from "./ColumnForm/Wrap";
-import { DragAndDropProvider } from "../../Providers/DragAndDropProvider";
-import { ErrorLayout } from "../../components/ErrorLayout";
-import { LoadingLayout } from "../../components/LoadingLayout";
-import { Modal } from "../../components/Modal";
+import styles from './styles.module.css';
+import { useFetchBoard } from '../../hooks/useFetchBoard';
+import { Column } from './Column';
+import { FormWrap } from '../../components/FormWrap';
+import { ColumnForm } from './ColumnForm';
+import { Wrap } from './ColumnForm/Wrap';
+import { DragAndDropProvider } from '../../Providers/DragAndDropProvider';
+import { ErrorLayout } from '../../components/ErrorLayout';
+import { LoadingLayout } from '../../components/LoadingLayout';
+import { Modal } from '../../components/Modal';
+import { observer } from 'mobx-react';
 
-export function BoardPage() {
+export const BoardPage = observer(_BoardPage);
+
+function _BoardPage() {
   const [board, { loading, error }] = useFetchBoard();
 
   if (error) return <ErrorLayout error={error} />;

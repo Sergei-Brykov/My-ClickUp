@@ -1,24 +1,13 @@
-import { ColumnForm } from "../../ColumnForm";
-import { ColumnHeader } from "./ColumnHeader";
+import { ColumnForm } from '../../ColumnForm';
+import { ColumnHeader } from './ColumnHeader';
+import { observer } from 'mobx-react';
 
-export function ColumnHeaderWrap({
-  crudService,
-  isFormOpen,
-  closeForm,
-  openForm,
-  column,
-  columnIndex,
-  isLast,
-}) {
+export const ColumnHeaderWrap = observer(_ColumnHeaderWrap);
+
+function _ColumnHeaderWrap({ crudService, isFormOpen, closeForm, openForm, column, columnIndex, isLast }) {
   return isFormOpen ? (
     <ColumnForm column={column} onClose={closeForm} />
   ) : (
-    <ColumnHeader
-      {...column}
-      {...crudService}
-      columnIndex={columnIndex}
-      isLast={isLast}
-      openForm={openForm}
-    />
+    <ColumnHeader {...column} {...crudService} columnIndex={columnIndex} isLast={isLast} openForm={openForm} />
   );
 }

@@ -1,19 +1,20 @@
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getOneBoard } from "../redux/asyncActions/board/getOneBoard";
-import { cleanBoardCreator } from "../redux/reducers/currentBoardReducer";
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getOneBoard } from '../redux/asyncActions/board/getOneBoard';
+import { cleanBoardCreator } from '../redux/reducers/currentBoardReducer';
+import { useInstance } from 'react-ioc';
+import { BoardInstance } from '../mobx/BoardInstance';
 
 export function useFetchBoard() {
   const { boardId } = useParams();
-  const dispatch = useDispatch();
-  const { board, loading, error } = useSelector((state) => state.currentBoard);
+  const boardInstance = useInstance(BoardInstance);
 
   useEffect(() => {
-    dispatch(getOneBoard(boardId));
-
-    return () => dispatch(cleanBoardCreator());
+    boardInstance.init(boardId);
   }, []);
+
+  const { board, loading, error } = boardInstance;
 
   return [board, { loading, error, boardId }];
 }

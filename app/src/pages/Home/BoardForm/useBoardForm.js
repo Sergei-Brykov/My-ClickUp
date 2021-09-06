@@ -1,11 +1,13 @@
-import { useDispatch } from "react-redux";
-import useForm from "../../../hooks/useForm";
-import { createNewBoard } from "../../../redux/asyncActions/board/createNewBoard";
-import { useMemo } from "react";
-import { updateBoard } from "../../../redux/asyncActions/board/updateBoard";
+import { useDispatch } from 'react-redux';
+import useForm from '../../../hooks/useForm';
+import { createNewBoard } from '../../../redux/asyncActions/board/createNewBoard';
+import { useMemo } from 'react';
+import { updateBoard } from '../../../redux/asyncActions/board/updateBoard';
+import { useInstance } from 'react-ioc';
+import { BoardsInstance } from '../../../mobx/BoardsInstance';
 
 export function useBoardForm(onClose, board) {
-  const dispatch = useDispatch();
+  const boardsInstance = useInstance(BoardsInstance);
 
   const formSettings = useMemo(() => {
     let settings;
@@ -14,17 +16,16 @@ export function useBoardForm(onClose, board) {
       settings = {
         initial: board,
         onSubmit: (values) => {
-          dispatch(updateBoard(values));
+          boardsInstance.updateBoard(values);
           onClose();
         },
       };
     } else {
       settings = {
-        initial: { title: "" },
+        initial: { title: '' },
         onSubmit: (values) => {
           values.createdAt = Date.now();
-
-          dispatch(createNewBoard(values));
+          boardsInstance.addNewBoard(values);
           onClose();
         },
       };
@@ -34,7 +35,7 @@ export function useBoardForm(onClose, board) {
       const error = {};
 
       if (values.title.length < 3) {
-        error.title = "Project name is too short";
+        error.title = 'Project name is too short';
       }
 
       return error;

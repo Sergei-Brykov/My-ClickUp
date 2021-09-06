@@ -15,7 +15,7 @@ export function findTaskById(column, taskId) {
 export function findTaskAndColumnByTaskId(board, taskId) {
   let task;
 
-  let column = board.columns.find((column) => {
+  let column = (board.columns || []).find((column) => {
     return column.tasks.find((tmpTask) => {
       if (tmpTask.id === taskId) {
         task = tmpTask;

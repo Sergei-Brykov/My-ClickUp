@@ -1,28 +1,28 @@
-import styles from "./styles.module.css";
-import cl from "../../../helpers/classname";
-import { Button } from "../../../components/Buttons";
-import { MainInput } from "../../../components/Inputs/MainInput";
-import { ErrorView } from "../../../components/ErrorView";
-import { colors } from "../../../config/colors";
-import { useAddColumnForm } from "./useAddColumnForm";
-import { CheckedButton } from "../../../components/Buttons/ChecketButton";
-import { invertColor } from "../../../helpers/invertColor";
+import styles from './styles.module.css';
+import cl from '../../../helpers/classname';
+import { Button } from '../../../components/Buttons';
+import { MainInput } from '../../../components/Inputs/MainInput';
+import { ErrorView } from '../../../components/ErrorView';
+import { colors } from '../../../config/colors';
+import { useAddColumnForm } from './useAddColumnForm';
+import { CheckedButton } from '../../../components/Buttons/ChecketButton';
+import { invertColor } from '../../../helpers/invertColor';
+import { observer } from 'mobx-react';
 
-export function ColumnForm({ onClose, column = null }) {
+export const ColumnForm = observer(_ColumnForm);
+
+function _ColumnForm({ onClose, column = null }) {
   const [form, error] = useAddColumnForm(onClose, column);
 
   return (
     <form onSubmit={form.onSubmit} className={styles.columnWrap}>
-      <div
-        className={cl(styles.column, styles.form)}
-        style={{ borderColor: form.values.color }}
-      >
+      <div className={cl(styles.column, styles.form)} style={{ borderColor: form.values.color }}>
         <div className={styles.inputWrap}>
           <MainInput
             autoFocus
-            onChange={form.onChange("title")}
+            onChange={form.onChange('title')}
             value={form.values.title}
-            placeholder={"COLUMN NAME"}
+            placeholder={'COLUMN NAME'}
           />
           <div className={styles.colorWrap}>
             {colors.map((color) => (
@@ -30,11 +30,9 @@ export function ColumnForm({ onClose, column = null }) {
                 key={color}
                 className={styles.circle}
                 style={{ background: color }}
-                onClick={() => form.customChange("color", color)}
+                onClick={() => form.customChange('color', color)}
               >
-                {color === form.values.color && (
-                  <CheckedButton fontSize={50} color={invertColor(color)} />
-                )}
+                {color === form.values.color && <CheckedButton fontSize={50} color={invertColor(color)} />}
               </div>
             ))}
           </div>
